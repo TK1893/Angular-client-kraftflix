@@ -17,7 +17,7 @@ import { Observable, throwError } from 'rxjs'; // Used to handle data streams th
 // **************************************************************************************
 
 // DECLARING-API-URL (for providing data for the client app)
-const apiUrl = 'https://kraftflix-api-d019e99d109c.herokuapp.com';
+const apiUrl = 'https://kraftflix-api-d019e99d109c.herokuapp.com/';
 
 // INJECTABLE-DECORATOR (Allows the service to be available throughout the app)
 @Injectable({
@@ -59,7 +59,8 @@ export class FetchApiDataService {
     console.log(userDetails);
     return (
       this.http
-        .post(`${apiUrl}/users`, userDetails) // uses Angular's HttpClient for sending a POST-request to the API. The userDetails object is sent along with the request.
+        .post(apiUrl + 'users', userDetails)
+        // .post(`${apiUrl}/users/`, userDetails) // uses Angular's HttpClient for sending a POST-request to the API. The userDetails object is sent along with the request.
         // returns an Observable emitting the server response when the request is completed.
         .pipe(catchError(this.handleError))
     ); // The pipe operator is used to add additional processing steps. In this case, the catchError operator is used to catch possible errors.
@@ -68,14 +69,14 @@ export class FetchApiDataService {
   // LOGIN-USER
   public userLogin(userDetails: any): Observable<any> {
     return this.http
-      .post(`${apiUrl}/login`, userDetails)
+      .post(`${apiUrl}login`, userDetails)
       .pipe(catchError(this.handleError));
   }
 
   // EDIT-USER
   public editUser(userDetails: any): Observable<any> {
     return this.http
-      .put(`${apiUrl}/users/${userDetails.Username}`, userDetails, {
+      .put(`${apiUrl}users/${userDetails.Username}`, userDetails, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -84,7 +85,7 @@ export class FetchApiDataService {
   // DELETE-USER
   public deleteUser(userName: string): Observable<any> {
     return this.http
-      .delete(`${apiUrl}/users/${userName}`, {
+      .delete(`${apiUrl}users/${userName}`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -94,7 +95,7 @@ export class FetchApiDataService {
   public addFavoriteMovie(userName: string, moviesID: string): Observable<any> {
     return this.http
       .post(
-        `${apiUrl}/users/${userName}/movies/${moviesID}`,
+        `${apiUrl}users/${userName}/movies/${moviesID}`,
         {},
         {
           headers: this.getHeaders(),
@@ -109,7 +110,7 @@ export class FetchApiDataService {
     moviesID: string
   ): Observable<any> {
     return this.http
-      .delete(`${apiUrl}/users/${userName}/movies/${moviesID}`, {
+      .delete(`${apiUrl}users/${userName}/movies/${moviesID}`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -120,7 +121,7 @@ export class FetchApiDataService {
   // GET-ALL-MOVIES
   public getAllMovies(): Observable<any> {
     return this.http
-      .get(`${apiUrl}/movies`, {
+      .get(`${apiUrl}movies`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -129,7 +130,7 @@ export class FetchApiDataService {
   // GET-SINGLE-MOVIE
   public getSingleMovie(title: string): Observable<any> {
     return this.http
-      .get(`${apiUrl}/movies/${title}`, {
+      .get(`${apiUrl}movies/${title}`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -138,7 +139,7 @@ export class FetchApiDataService {
   // GET-DIRECTOR
   public getDirector(directorName: string): Observable<any> {
     return this.http
-      .get(`${apiUrl}/movies/directors/${directorName}`, {
+      .get(`${apiUrl}movies/directors/${directorName}`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -147,7 +148,7 @@ export class FetchApiDataService {
   // GET-GENRE
   public getGenre(genreName: string): Observable<any> {
     return this.http
-      .get(`${apiUrl}/movies/genres/${genreName}`, {
+      .get(`${apiUrl}movies/genres/${genreName}`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
