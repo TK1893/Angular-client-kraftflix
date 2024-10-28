@@ -13,6 +13,8 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { Router } from '@angular/router';
+
 // COMPONENT-CONFIGURATION
 // ----------------------------------------------------------------------------------------------------------
 @Component({
@@ -32,7 +34,8 @@ export class UserLoginFormComponent implements OnInit {
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     //Reference to the dialog that opened this component, so that the dialog can be closed after
     // successful registration.
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -53,6 +56,7 @@ export class UserLoginFormComponent implements OnInit {
         this.snackBar.open('You have successfully logged in.', 'OK', {
           duration: 3000,
         });
+        this.router.navigate(['movies']);
       },
       // Error Callback
       (result) => {
