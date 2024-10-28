@@ -1,11 +1,14 @@
 // src\app\app.component.ts
 
 // IMPORTS
+// ----------------------------------------------------------------------------------------------------------
 import { Component } from '@angular/core';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MatDialog } from '@angular/material/dialog';
 
+// COMPONENT-CONFIGURATION
+// ----------------------------------------------------------------------------------------------------------
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,21 +16,24 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 // COMPONENT
+// ----------------------------------------------------------------------------------------------------------
 export class AppComponent {
-  title = 'myFlix-Angular-client';
+  title = 'KRAFTFLIX';
 
+  // INITIALIZATION-OF-MAT-DIALOG-OBJECT
   constructor(public dialog: MatDialog) {}
-  // This is the function that will open the dialog when the signup button is clicked
+
+  // OPEN-USER-REGISTRATION-DIALOG
   openUserRegistrationDialog(): void {
+    // open-Method of MatDialog to open Component as a Modal
     this.dialog.open(UserRegistrationFormComponent, {
       // Assigning the dialog a width
       width: '280px',
     });
   }
-
+  // OPEN-USER-LOGIN-DIALOG
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
-      // Assigning the dialog a width
       width: '280px',
     });
   }

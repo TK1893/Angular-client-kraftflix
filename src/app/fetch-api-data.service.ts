@@ -1,14 +1,14 @@
 // src\app\fetch-api-data.service.ts
 
 // IMPORTS
-// **************************************************************************************
+// ----------------------------------------------------------------------------------------------------------
 import { Injectable } from '@angular/core'; // INJECTABLE OPERATOR (for marking class as a service that can be injected into other parts of the app)
 import { catchError, map } from 'rxjs/operators';
-// CATCH-ERROR-OPERATOR (for Error-Handling during Async Operations)
-// MAP-OPEATOR (Used to return errors when an HTTP request fails.)
+// catchError: Operator for Error-Handling during Async Operations
+// map: Operator for returning errors when an HTTP request fails.
 import {
-  HttpClient, // Allows sending HTTP requests
-  HttpHeaders, // Helps set custom headers for HTTP requests (e.g., for authentication)
+  HttpClient,   // Allows sending HTTP requests
+  HttpHeaders,  // Helps set custom headers for HTTP requests (e.g., for authentication)
   HttpErrorResponse, // Represents error objects that occur when making HTTP requests.
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs'; // Used to handle data streams that are returned from HTTP requests.
@@ -20,13 +20,13 @@ import { Observable, throwError } from 'rxjs'; // Used to handle data streams th
 const apiUrl = 'https://kraftflix-api-d019e99d109c.herokuapp.com/';
 
 // INJECTABLE-DECORATOR (Allows the service to be available throughout the app)
+//  marks this class as a service
 @Injectable({
-  //  marks this class as a service,
   providedIn: 'root', // makes cervice be available throughout the app without declaring it in a module.
 })
 
 // SERVICE CLASS
-// **************************************************************************************
+// ----------------------------------------------------------------------------------------------------------
 export class FetchApiDataService {
   // INJECTION-OF-HTTP-CLIENT
   constructor(private http: HttpClient) {}
@@ -39,12 +39,11 @@ export class FetchApiDataService {
     const body = res;
     return body || {};
   }
-
   // GET-TOKEN
   private getToken(): string | null {
     return localStorage.getItem('token');
   }
-
+  // GET-HEADERS
   private getHeaders(): HttpHeaders {
     const token = this.getToken();
     return new HttpHeaders({
@@ -52,7 +51,7 @@ export class FetchApiDataService {
     });
   }
 
-  // ----  USER  ----  ----  ----  ----  ----
+  // USERS-ENDPOINT-OPERATIONS  ---------------------------------------------
 
   // CREATE-USER  (USER-REGISTRATION)
   public userRegistration(userDetails: any): Observable<any> {
@@ -116,7 +115,7 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // ----  MOVIES  ----  ----  ----  ----  ----
+  // MOVIES-ENDPOINT-OPERATIONS  ---------------------------------------------
 
   // GET-ALL-MOVIES
   public getAllMovies(): Observable<any> {

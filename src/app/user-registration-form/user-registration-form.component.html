@@ -1,25 +1,36 @@
+<!-- src\app\user-registration-form\user-registration-form.component.html -->
+
 <mat-card>
-    <mat-card-header>
+    <!-- HEADER -->
+    <mat-card-header class="custom-card-header">
         <mat-card-title>Sign Up!</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <!-- CONTENT -->
+    <mat-card-content class="custom-card-content">
+        <!-- FORM -->
         <form>
+            <!-- USERNAME -->
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username"
                     required>
             </mat-form-field>
+            <!-- PASSWORD -->
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
                     required>
+                <!-- Two-way data binding (binds the value of the input field to the Username property of the userData object in the component) -->
             </mat-form-field>
+            <!-- EMAIL -->
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email" required>
             </mat-form-field>
+            <!-- BIRTHDATE -->
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Birthdate" type="date" placeholder="Birthdate" name="Birthdate">
             </mat-form-field>
         </form>
     </mat-card-content>
+    <!-- ACTION-CONTAINER -->
     <mat-card-actions>
         <button mat-raised-button (click)="registerUser()" color="primary">
             Sign Up
