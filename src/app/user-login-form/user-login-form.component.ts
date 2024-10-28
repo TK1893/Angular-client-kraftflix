@@ -60,9 +60,13 @@ export class UserLoginFormComponent implements OnInit {
       },
       // Error Callback
       (result) => {
-        this.snackBar.open(result, 'OK', {
-          duration: 3000,
-        });
+        this.snackBar.open(
+          'Login failed - Please try again ' + `( ${result} )`,
+          'OK',
+          {
+            duration: 3000,
+          }
+        );
       }
     );
   }
