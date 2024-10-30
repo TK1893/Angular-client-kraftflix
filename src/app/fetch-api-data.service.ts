@@ -91,20 +91,55 @@ export class FetchApiDataService {
   }
 
   // GET-SINGLE-USER
-  public getSingleUser(name: string): Observable<any> {
+  public getSingleUser(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
-      .get(`${apiUrl}users/${name}`, {
+      .get(`${apiUrl}users/${user.Username}`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
+  // public getSingleUser(name: string): Observable<any> {
+  //   return this.http
+  //     .get(`${apiUrl}users/${name}`, {
+  //       headers: this.getHeaders(),
+  //     })
+  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
+  // }
 
   // ADD-FAVORITE-MOVIE
   // *****************************
-  // public addFavoriteMovie(userName: string, moviesID: string): Observable<any> {
+
+  public addFavoriteMovie(moviesID: string): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    console.log(user);
+    console.log(moviesID);
+    return this.http
+      .post(
+        `${apiUrl}users/${user.Username}/movies/${moviesID}`,
+        {},
+        {
+          headers: this.getHeaders(),
+          responseType: 'text', // Antwort als reinen Text behandeln
+        }
+      )
+      .pipe(
+        map((response) => {
+          // Keine JSON-Konvertierung, einfach Text weitergeben
+          console.log('Serverantwort:', response);
+          return response;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  // public addFavoriteMovie(moviesID: string): Observable<any> {
+  //   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  //   console.log(user);
+  //   console.log(moviesID);
   //   return this.http
   //     .post(
-  //       `${apiUrl}users/${userName}/movies/${moviesID}`,
+  //       `${apiUrl}users/${user.Username}/movies/${moviesID}`,
   //       {},
   //       {
   //         headers: this.getHeaders(),
@@ -112,37 +147,16 @@ export class FetchApiDataService {
   //     )
   //     .pipe(map(this.extractResponseData), catchError(this.handleError));
   // }
-  public addFavoriteMovie(moviesID: string): Observable<any> {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return this.http
-      .post(
-        `${apiUrl}users/${user.Username}/movies/${moviesID}`,
-        {},
-        {
-          headers: this.getHeaders(),
-        }
-      )
-      .pipe(map(this.extractResponseData), catchError(this.handleError));
-  }
 
   // DELETE-FAVORITE-MOVIE
   // *******************************
-  // public deleteFavoriteMovie(
-  //   userName: string,
-  //   moviesID: string
-  // ): Observable<any> {
-  //   return this.http
-  //     .delete(`${apiUrl}users/${userName}/movies/${moviesID}`, {
-  //       headers: this.getHeaders(),
-  //     })
-  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
-  // }
 
   public deleteFavoriteMovie(moviesID: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
       .delete(`${apiUrl}users/${user.Username}/movies/${moviesID}`, {
         headers: this.getHeaders(),
+        responseType: 'text', // Antwort als reinen Text behandeln
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }

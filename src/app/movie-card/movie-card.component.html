@@ -1,34 +1,20 @@
 <!-- src/app/movie-card/movie-card.component.html -->
 
-<!-- <mat-card *ngFor="let movie of movies; let i=index;">
-    <mat-dialog-content>
-        <mat-card-title>{{movie.Title}}</mat-card-title>
-        <mat-card-subtitle><img src={{movie.Imageurl}} /></mat-card-subtitle>
-    </mat-dialog-content>
-</mat-card> -->
-
-<!-- <div style="display: flex;">
-    <mat-card *ngFor="let movie of movies;let i=index;" style="flex: 1 1 auto;" class="custom-card">
-        <mat-card-header>
-            <mat-card-title>{{movie.Title}}</mat-card-title>
-            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
-        </mat-card-header>
-        <img class="custom-card-image" src={{movie.Imageurl}} alt={{movie.Title}} />
-        <mat-card-actions>
-            <button mat-button color="primary">
-                Genre
-            </button>
-            <button mat-button color="primary">
-                Director
-            </button>
-            <button mat-button color="primary">
-                Synopsis
-            </button>
-            <mat-icon>favorite_border</mat-icon>
-        </mat-card-actions>
-    </mat-card>
-</div> -->
 <app-navbar></app-navbar>
+
+<!-- <div class="testButton">
+    <button (click)="testDeleteFavoriteMovie('6629095e6e3b378ee9117b8b')">Test Favorite Movie</button>
+</div> -->
+
+<div>
+    <h1>FAVORITE MOVIES</h1>
+    <ul>
+        <li *ngFor="let movie of favMovies; let i = index;">
+            <p>{{movie}}</p>
+        </li>
+    </ul>
+</div>
+
 
 <div class="card-container">
     <mat-card *ngFor="let movie of movies; let i = index;" class="custom-card">
@@ -45,9 +31,17 @@
             <button mat-button color="primary" (click)="openDescriptionDialog(movie.Description)">Synopsis</button>
             <!-- Doesn't work -->
             <button mat-icon-button color="warn"
-                (click)="isFavoriteMovie(movie._id) ? removeFavMovies(movie._id) : addFavMovies(movie._id)">
-                <mat-icon>{{isFavoriteMovie(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+                (click)="isFavorite(movie._id) ? deleteFavorite(movie._id) : addFavorite(movie._id)">
+                <mat-icon>{{isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
             </button>
+
+            <!-- <button mat-button color="primary" (click)="addFM(movie._id)">Add</button>
+            <button mat-button color="primary" (click)="deleteFM(movie._id)">Delete</button> -->
+            <button mat-button color="primary" (click)="addFavorite(movie._id)">Add</button>
+            <button mat-button color="primary" (click)="deleteFavorite(movie._id)">Delete</button>
+
+
+
         </mat-card-actions>
     </mat-card>
 </div>
