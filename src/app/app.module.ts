@@ -11,6 +11,12 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { InfoDirectorComponent } from './info-director/info-director.component';
+import { InfoGenreComponent } from './info-genre/info-genre.component';
+import { InfoMovieComponent } from './info-movie/info-movie.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+// COMPONENTS
 
 // Animationen?
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -23,16 +29,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 // Routing
 import { RouterModule, Routes } from '@angular/router';
-import { InfoDirectorComponent } from './info-director/info-director.component';
-import { InfoGenreComponent } from './info-genre/info-genre.component';
-import { InfoMovieComponent } from './info-movie/info-movie.component';
-// COMPONENTS
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -48,7 +53,10 @@ const appRoutes: Routes = [
     InfoDirectorComponent,
     InfoGenreComponent,
     InfoMovieComponent,
+    NavbarComponent,
+    UserProfileComponent,
   ],
+
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
@@ -62,6 +70,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
+    MatToolbarModule,
   ],
   // Definition of the required global services or providers
   providers: [provideAnimationsAsync()],

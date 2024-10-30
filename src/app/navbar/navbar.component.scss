@@ -1,0 +1,19 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-bar {
+  height: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.custom-toolbar {
+  padding: 0 50px;
+}
+button {
+  margin: 0 15px;
+}
