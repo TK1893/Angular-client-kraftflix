@@ -7,8 +7,8 @@ import { catchError, map } from 'rxjs/operators';
 // catchError: Operator for Error-Handling during Async Operations
 // map: Operator for returning errors when an HTTP request fails.
 import {
-  HttpClient,   // Allows sending HTTP requests
-  HttpHeaders,  // Helps set custom headers for HTTP requests (e.g., for authentication)
+  HttpClient, // Allows sending HTTP requests
+  HttpHeaders, // Helps set custom headers for HTTP requests (e.g., for authentication)
   HttpErrorResponse, // Represents error objects that occur when making HTTP requests.
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs'; // Used to handle data streams that are returned from HTTP requests.
@@ -90,11 +90,33 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
+  // GET-SINGLE-USER
+  public getSingleUser(name: string): Observable<any> {
+    return this.http
+      .get(`${apiUrl}users/${name}`, {
+        headers: this.getHeaders(),
+      })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
   // ADD-FAVORITE-MOVIE
-  public addFavoriteMovie(userName: string, moviesID: string): Observable<any> {
+  // *****************************
+  // public addFavoriteMovie(userName: string, moviesID: string): Observable<any> {
+  //   return this.http
+  //     .post(
+  //       `${apiUrl}users/${userName}/movies/${moviesID}`,
+  //       {},
+  //       {
+  //         headers: this.getHeaders(),
+  //       }
+  //     )
+  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
+  // }
+  public addFavoriteMovie(moviesID: string): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
       .post(
-        `${apiUrl}users/${userName}/movies/${moviesID}`,
+        `${apiUrl}users/${user.Username}/movies/${moviesID}`,
         {},
         {
           headers: this.getHeaders(),
@@ -104,12 +126,22 @@ export class FetchApiDataService {
   }
 
   // DELETE-FAVORITE-MOVIE
-  public deleteFavoriteMovie(
-    userName: string,
-    moviesID: string
-  ): Observable<any> {
+  // *******************************
+  // public deleteFavoriteMovie(
+  //   userName: string,
+  //   moviesID: string
+  // ): Observable<any> {
+  //   return this.http
+  //     .delete(`${apiUrl}users/${userName}/movies/${moviesID}`, {
+  //       headers: this.getHeaders(),
+  //     })
+  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
+  // }
+
+  public deleteFavoriteMovie(moviesID: string): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
-      .delete(`${apiUrl}users/${userName}/movies/${moviesID}`, {
+      .delete(`${apiUrl}users/${user.Username}/movies/${moviesID}`, {
         headers: this.getHeaders(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
