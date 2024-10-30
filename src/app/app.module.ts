@@ -25,6 +25,9 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 // Routing
 import { RouterModule, Routes } from '@angular/router';
+import { InfoDirectorComponent } from './info-director/info-director.component';
+import { InfoGenreComponent } from './info-genre/info-genre.component';
+import { InfoMovieComponent } from './info-movie/info-movie.component';
 // COMPONENTS
 
 const appRoutes: Routes = [
@@ -42,6 +45,9 @@ const appRoutes: Routes = [
     UserLoginFormComponent,
     MovieCardComponent,
     WelcomePageComponent,
+    InfoDirectorComponent,
+    InfoGenreComponent,
+    InfoMovieComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
