@@ -46,12 +46,32 @@ export class UserRegistrationFormComponent implements OnInit {
   // is called once after the component's input has been initialized (via the @Input decorator).
 
   // SENDING-SIGNIN-FORM-INPUTS-TO-BACKEND
+  // registerUser(): void {
+  //   //
+  //   // calls the userRegistration method of the fetchApiData service and passes the userData object.
+  //   this.fetchApiData.userRegistration(this.userData).subscribe(
+  //     // Success Callback
+  //     (result) => {
+  //       this.dialogRef.close(); // This will close the modal on success!
+  //       console.log(result);
+  //       this.snackBar.open('You have successfully registered.', 'OK', {
+  //         duration: 3000,
+  //       });
+  //     },
+  //     // Error Callback
+  //     (result) => {
+  //       this.snackBar.open(result, 'OK', {
+  //         duration: 3000,
+  //       });
+  //     }
+  //   );
+  // }
+
   registerUser(): void {
-    //
     // calls the userRegistration method of the fetchApiData service and passes the userData object.
-    this.fetchApiData.userRegistration(this.userData).subscribe(
+    this.fetchApiData.userRegistration(this.userData).subscribe({
       // Success Callback
-      (result) => {
+      next: (result) => {
         this.dialogRef.close(); // This will close the modal on success!
         console.log(result);
         this.snackBar.open('You have successfully registered.', 'OK', {
@@ -59,11 +79,11 @@ export class UserRegistrationFormComponent implements OnInit {
         });
       },
       // Error Callback
-      (result) => {
-        this.snackBar.open(result, 'OK', {
+      error: (error) => {
+        this.snackBar.open(error, 'OK', {
           duration: 3000,
         });
-      }
-    );
+      },
+    });
   }
 }

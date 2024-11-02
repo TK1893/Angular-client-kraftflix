@@ -86,6 +86,7 @@ export class FetchApiDataService {
     return this.http
       .delete(`${apiUrl}users/${userName}`, {
         headers: this.getHeaders(),
+        responseType: 'text', // Antwort als Text behandeln, um Parsing-Fehler zu vermeiden
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }

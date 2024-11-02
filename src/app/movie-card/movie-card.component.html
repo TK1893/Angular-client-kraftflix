@@ -6,21 +6,21 @@
     <button (click)="testDeleteFavoriteMovie('6629095e6e3b378ee9117b8b')">Test Favorite Movie</button>
 </div> -->
 
-<div>
+<!-- <div>
     <h1>FAVORITE MOVIES</h1>
     <ul>
         <li *ngFor="let movie of favMovies; let i = index;">
             <p>{{movie}}</p>
         </li>
     </ul>
-</div>
+</div> -->
 
 
 <div class="card-container">
     <mat-card *ngFor="let movie of movies; let i = index;" class="custom-card">
         <mat-card-header>
             <mat-card-title>{{ movie.Title }}</mat-card-title>
-            <mat-card-subtitle>({{ movie.Director.Name }})</mat-card-subtitle>
+            <mat-card-subtitle>({{ movie.Year }})</mat-card-subtitle>
         </mat-card-header>
         <img class="custom-card-image" src="{{ movie.Imageurl }}" alt="{{ movie.Title }}" />
         <mat-card-actions>
@@ -34,14 +34,6 @@
                 (click)="isFavorite(movie._id) ? deleteFavorite(movie._id) : addFavorite(movie._id)">
                 <mat-icon>{{isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
             </button>
-
-            <!-- <button mat-button color="primary" (click)="addFM(movie._id)">Add</button>
-            <button mat-button color="primary" (click)="deleteFM(movie._id)">Delete</button> -->
-            <button mat-button color="primary" (click)="addFavorite(movie._id)">Add</button>
-            <button mat-button color="primary" (click)="deleteFavorite(movie._id)">Delete</button>
-
-
-
         </mat-card-actions>
     </mat-card>
 </div>

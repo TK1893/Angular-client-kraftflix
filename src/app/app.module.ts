@@ -30,7 +30,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatTableModule } from '@angular/material/table';
 // Routing
 import { RouterModule, Routes } from '@angular/router';
 
@@ -71,6 +71,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatIconModule,
     MatToolbarModule,
+    MatTableModule,
   ],
   // Definition of the required global services or providers
   providers: [provideAnimationsAsync()],

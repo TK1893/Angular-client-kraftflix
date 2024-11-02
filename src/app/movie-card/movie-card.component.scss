@@ -1,7 +1,7 @@
 .card-container {
   margin-top: 75px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px; /* Abstand zwischen den Cards */
   padding: 16px;
 }
@@ -13,12 +13,4 @@
 
 .custom-card-image {
   height: 100%;
-}
-
-.testButton {
-  margin: 200px 0;
-  button {
-    width: 250px;
-    font-size: 3rem;
-  }
 }

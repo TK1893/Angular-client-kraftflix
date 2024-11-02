@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
+})
+@Injectable({
+  providedIn: 'root', // makes cervice be available throughout the app without declaring it in a module.
 })
 export class NavbarComponent implements OnInit {
   // CONSTRUCTOR
