@@ -43,13 +43,56 @@
 
 
         <mat-card-actions>
-            <button mat-button color="primary" (click)="deleteUserProfile()">Delete User Profile</button>
-
+            <button mat-button color="primary" (click)="deleteUserProfile()">Delete Your Profile</button>
         </mat-card-actions>
 
-
+        <!-- <mat-card-actions>
+            <button mat-button color="primary" (click)="updateUserProfile()">Update Your Data</button>
+        </mat-card-actions> -->
     </mat-card-content>
 </mat-card>
+
+
+
+<!-- UPDATE PROFILE -->
+<mat-card class="custom-card">
+    <!-- HEADER -->
+    <mat-card-header class="custom-card-header">
+        <mat-card-title>Update Your Profile</mat-card-title>
+    </mat-card-header>
+
+    <!-- FORM - UPDATE USER DATA -->
+    <mat-card-content class="custom-card-content">
+        <h3>Update Your Profile</h3>
+        <form>
+            <!-- USERNAME -->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username"
+                    required />
+            </mat-form-field>
+
+            <!-- PASSWORD -->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
+                    required />
+            </mat-form-field>
+
+            <!-- EMAIL -->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email" required />
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+
+    <!-- ACTION-CONTAINER -->
+    <mat-card-actions>
+        <button mat-raised-button (click)="updateUserProfile()" color="primary">
+            Update Profile
+        </button>
+    </mat-card-actions>
+</mat-card>
+
+
 
 
 <!-- FAVORITE-MOVIES -->
@@ -71,11 +114,6 @@
                 </mat-card-header>
                 <img class="custom-card-image" src="{{ movie.Imageurl }}" alt="{{ movie.Title }}" />
                 <mat-card-actions>
-                    <!-- <button mat-button color="primary"
-                        (click)="openGenreDialog(movie.Genre.Name,movie.Genre.Description)">Genre</button>
-                    <button mat-button color=" primary"
-                        (click)="openDirectorDialog(movie.Director.Name,movie.Director.Bio)">Director</button>
-                    <button mat-button color="primary" (click)="openDescriptionDialog(movie.Description)">Synopsis</button> -->
                     <button mat-icon-button color="warn"
                         (click)="isFavorite(movie._id) ? deleteFavorite(movie._id) : addFavorite(movie._id)">
                         <mat-icon>{{isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>

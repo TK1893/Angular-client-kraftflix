@@ -1,4 +1,4 @@
-// src\app\user-registration-form\user-registration-form.component.ts
+// src\app\user-update-form\user-update-form.component.ts
 
 // IMPORTS
 // ----------------------------------------------------------------------------------------------------------
@@ -12,69 +12,46 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 // Components
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 // COMPONENT-CONFIGURATION
 // ----------------------------------------------------------------------------------------------------------
 @Component({
-  selector: 'app-user-registration-form',
-  templateUrl: './user-registration-form.component.html',
-  styleUrl: '../user-login-form/user-login-form.component.scss',
+  selector: 'app-user-update-form',
+  templateUrl: './user-update-form.component.html',
+  styleUrl: './user-update-form.component.scss',
 })
 
 // COMPONENT
 // ----------------------------------------------------------------------------------------------------------
-export class UserRegistrationFormComponent implements OnInit {
-  // OnInt: The OnInit-Interface is implemented in the component to manage its initialization logic.
-
+export class UserUpdateFormComponent implements OnInit {
+  //
   // INPUT-DECORATOR
-  @Input() userData = { Username: '', Password: '', Email: '', Birthdate: '' };
+  @Input() userData = { Username: '', Password: '', Email: '' };
   // @Input: Decorator for passing this data from a higher-level component.
   // userData: empty initialization of the user-Data object.
 
   // CONSTRUCTOR (The constructor injects dependencies)
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
+    public dialogRef: MatDialogRef<UserUpdateFormComponent>,
     //Reference to the dialog that opened this component, so that the dialog can be closed after
     // successful registration.
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public userProfile: UserProfileComponent
   ) {}
 
+  // NG-ON-INIT
   ngOnInit(): void {}
-  // Lifecycle-Hook = special methods that Angular calls at certain points in the life cycle of a component or directive.
-  // is called once after the component's input has been initialized (via the @Input decorator).
 
-  // SENDING-SIGNIN-FORM-INPUTS-TO-BACKEND
-  // registerUser(): void {
-  //   //
-  //   // calls the userRegistration method of the fetchApiData service and passes the userData object.
-  //   this.fetchApiData.userRegistration(this.userData).subscribe(
-  //     // Success Callback
-  //     (result) => {
-  //       this.dialogRef.close(); // This will close the modal on success!
-  //       console.log(result);
-  //       this.snackBar.open('You have successfully registered.', 'OK', {
-  //         duration: 3000,
-  //       });
-  //     },
-  //     // Error Callback
-  //     (result) => {
-  //       this.snackBar.open(result, 'OK', {
-  //         duration: 3000,
-  //       });
-  //     }
-  //   );
-  // }
-
-  // REGISTER USER
-  registerUser(): void {
+  updaterUser(): void {
     // calls the userRegistration method of the fetchApiData service and passes the userData object.
-    this.fetchApiData.userRegistration(this.userData).subscribe({
+    this.fetchApiData.editUser(this.userData).subscribe({
       // Success Callback
       next: (result) => {
         this.dialogRef.close(); // This will close the modal on success!
-        console.log(result);
-        this.snackBar.open('You have successfully registered.', 'OK', {
+        console.log('result: ', result);
+        this.snackBar.open('You have successfully updated.', 'OK', {
           duration: 3000,
         });
       },

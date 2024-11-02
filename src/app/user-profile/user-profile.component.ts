@@ -1,6 +1,6 @@
 // IMPORTS
 // ----------------------------------------------------------------------------------------------------------
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
+})
+@Injectable({
+  providedIn: 'root', // makes cervice be available throughout the app without declaring it in a module.
 })
 export class UserProfileComponent implements OnInit {
   //
@@ -28,6 +31,12 @@ export class UserProfileComponent implements OnInit {
   user: any = {};
   favMovies: any[] = [];
   favMoviesObjects: any[] = [];
+
+  @Input() userData = {
+    Username: '',
+    Password: '',
+    Email: '',
+  };
 
   //  ngOnInit  /////////////////////////////
   ngOnInit(): void {
@@ -71,6 +80,8 @@ export class UserProfileComponent implements OnInit {
       this.favMovies = this.user.FavoriteMovies;
       console.log('this.user: ', this.user);
       console.log('this.favMovies: ', this.favMovies);
+      this.userData.Username = this.user.Username;
+      this.userData.Email = this.user.Email;
       this.initializeFavorites();
       return this.user;
     });
@@ -168,11 +179,36 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
-}
 
-// // OPEN-USER-LOGIN-DIALOG
-// openUserUpdateDialog(): void {
-//   this.dialog.open(UserLoginFormComponent, {
-//     width: '300px',
-//   });
-// }
+  // UPDATE USER *******************************************************
+
+  updateUserProfile(): void {
+    if (
+      !this.userData.Username ||
+      !this.userData.Password ||
+      !this.userData.Email
+    ) {
+      this.snackBar.open('Please fill all required fields.', 'OK', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    this.fetchApiData.editUser(this.userData).subscribe({
+      next: (result) => {
+        console.log('Profile updated successfully:', result);
+        this.snackBar.open('Your profile has been updated!', 'OK', {
+          duration: 3000,
+        });
+        // Aktualisiert die Benutzerinformationen im UI
+        this.getAPIUser();
+      },
+      error: (error) => {
+        console.error('Error updating profile:', error);
+        this.snackBar.open('Failed to update profile', 'OK', {
+          duration: 3000,
+        });
+      },
+    });
+  }
+}

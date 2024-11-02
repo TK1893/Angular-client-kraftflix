@@ -33,6 +33,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 // Routing
 import { RouterModule, Routes } from '@angular/router';
+import { UserUpdateFormComponent } from './user-update-form/user-update-form.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     InfoMovieComponent,
     NavbarComponent,
     UserProfileComponent,
+    UserUpdateFormComponent,
   ],
 
   imports: [

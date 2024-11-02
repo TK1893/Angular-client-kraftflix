@@ -1,0 +1,32 @@
+<!-- src\app\user-update-form\user-update-form.component.html -->
+<mat-card>
+    <!-- HEADER -->
+    <mat-card-header class="custom-card-header">
+        <mat-card-title>UPDATE YOUR DATA</mat-card-title>
+    </mat-card-header>
+    <!-- CONTENT -->
+    <mat-card-content class="custom-card-content">
+        <!-- FORM -->
+        <form>
+            <!-- USERNAME -->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username">
+            </mat-form-field>
+            <!-- PASSWORD -->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password">
+                <!-- Two-way data binding (binds the value of the input field to the Username property of the userData object in the component) -->
+            </mat-form-field>
+            <!-- EMAIL -->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <!-- ACTION-CONTAINER -->
+    <mat-card-actions>
+        <button mat-raised-button (click)="updaterUser()" color="primary">
+            Sign Up
+        </button>
+    </mat-card-actions>
+</mat-card>
