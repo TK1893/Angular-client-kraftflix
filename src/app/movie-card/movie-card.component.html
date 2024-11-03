@@ -1,21 +1,9 @@
 <!-- src/app/movie-card/movie-card.component.html -->
 
+<!-- NAVIGATION-BAR -->
 <app-navbar></app-navbar>
 
-<!-- <div class="testButton">
-    <button (click)="testDeleteFavoriteMovie('6629095e6e3b378ee9117b8b')">Test Favorite Movie</button>
-</div> -->
-
-<!-- <div>
-    <h1>FAVORITE MOVIES</h1>
-    <ul>
-        <li *ngFor="let movie of favMovies; let i = index;">
-            <p>{{movie}}</p>
-        </li>
-    </ul>
-</div> -->
-
-
+<!-- MOVIE-CARDS -->
 <div class="card-container">
     <mat-card *ngFor="let movie of movies; let i = index;" class="custom-card">
         <mat-card-header>
@@ -28,7 +16,8 @@
                 (click)="openGenreDialog(movie.Genre.Name,movie.Genre.Description)">Genre</button>
             <button mat-button color=" primary"
                 (click)="openDirectorDialog(movie.Director.Name,movie.Director.Bio)">Director</button>
-            <button mat-button color="primary" (click)="openDescriptionDialog(movie.Description)">Synopsis</button>
+            <button mat-button color="primary"
+                (click)="openDescriptionDialog(movie.Description, movie.Title)">Synopsis</button>
             <!-- Doesn't work -->
             <button mat-icon-button color="warn"
                 (click)="isFavorite(movie._id) ? deleteFavorite(movie._id) : addFavorite(movie._id)">

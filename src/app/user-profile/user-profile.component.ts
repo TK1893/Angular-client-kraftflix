@@ -1,3 +1,5 @@
+// src\app\user-profile\user-profile.component.ts
+
 // IMPORTS
 // ----------------------------------------------------------------------------------------------------------
 import { Component, OnInit, Injectable, Input } from '@angular/core';
@@ -7,14 +9,25 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
 
+// COMPONENT-CONFIGURATION
+// ----------------------------------------------------------------------------------------------------------
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })
+/**
+ * INJECTABLE-DECORATOR
+ * ----------------------------------------------------------------------------------------------------------
+ * marks this class as a service
+ * allows the service to be available throughout the app (without declaring it in a module)
+ */
 @Injectable({
-  providedIn: 'root', // makes cervice be available throughout the app without declaring it in a module.
+  providedIn: 'root',
 })
+
+// COMPONENT
+// ----------------------------------------------------------------------------------------------------------
 export class UserProfileComponent implements OnInit {
   //
   //  CONSTRUCTOR /////////////////////////////
@@ -32,19 +45,22 @@ export class UserProfileComponent implements OnInit {
   favMovies: any[] = [];
   favMoviesObjects: any[] = [];
 
+  /**  @-INPUT-DECORATOR /////////////////////////////
+   * allows the parent component to pass data (userData) to the child component.
+   */
   @Input() userData = {
     Username: '',
     Password: '',
     Email: '',
   };
 
-  //  ngOnInit  /////////////////////////////
+  //  NG-ON-INIT  /////////////////////////////
   ngOnInit(): void {
     this.getAPIMovies();
     this.getAPIUser();
   }
 
-  // INITIALIZE FAVORITES /////////////////////////////
+  // INITIALIZE-FAVORITES /////////////////////////////
   initializeFavorites(): void {
     // Ensure both movies and favMovies are loaded before setting favMoviesObjects
     if (this.movies.length > 0 && this.favMovies.length > 0) {
@@ -52,7 +68,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  // SET FAVORITE MOVIES OBJECTS /////////////////////////////
+  // SET-FAVORITE-MOVIES-OBJECTS /////////////////////////////
   setFavoriteMoviesObjects(): void {
     // Filter the movies array based on the IDs in favMovies array
     this.favMoviesObjects = this.movies.filter((movie) =>
@@ -87,7 +103,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // IS-FAVORITE ?? (CHECK)  /////////////////////////////
+  // IS-MOVIE-FAVORITE-CHECK-?  /////////////////////////////
   isFavorite(movieID: string): boolean {
     console.log(
       'Ist er ein Favorite?: ',
@@ -182,6 +198,7 @@ export class UserProfileComponent implements OnInit {
 
   // UPDATE USER *******************************************************
 
+  // UPDATE-USER-PROFILE
   updateUserProfile(): void {
     if (
       !this.userData.Username ||

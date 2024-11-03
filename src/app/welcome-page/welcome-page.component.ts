@@ -19,12 +19,13 @@ import { MatDialog } from '@angular/material/dialog';
 // ----------------------------------------------------------------------------------------------------------
 export class WelcomePageComponent implements OnInit {
   //
-  // INITIALIZATION-OF-MAT-DIALOG-OBJECT
-  constructor(public dialog: MatDialog) {}
+  //  CONSTRUCTOR /////////////////////////////
+  constructor(public dialog: MatDialog) {} // INITIALIZATION-OF-MAT-DIALOG-OBJECT
 
-  ngOnInit(): void {}
+  //  NG-ON-INIT  ///////////////////////////// (is implemented in the component to manage its initialization logic.)
+  ngOnInit(): void {} // is called once after the component's input has been initialized (via the @Input decorator).
 
-  // OPEN-USER-REGISTRATION-DIALOG
+  // OPEN-USER-REGISTRATION-DIALOG  /////////////////////////////
   openUserRegistrationDialog(): void {
     // open-Method of MatDialog to open Component as a Modal
     this.dialog.open(UserRegistrationFormComponent, {
@@ -33,7 +34,7 @@ export class WelcomePageComponent implements OnInit {
     });
   }
 
-  // OPEN-USER-LOGIN-DIALOG
+  // OPEN-USER-LOGIN-DIALOG  /////////////////////////////
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px',

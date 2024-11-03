@@ -125,6 +125,7 @@ export class MovieCardComponent implements OnInit {
       width: '400px',
     });
   }
+
   // OPEN-GENRE-DIALOG  /////////////////////////////
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(InfoGenreComponent, {
@@ -135,11 +136,13 @@ export class MovieCardComponent implements OnInit {
       width: '400px',
     });
   }
+
   // OPEN-DESCRIPTION-DIALOG  /////////////////////////////
-  openDescriptionDialog(description: string): void {
+  openDescriptionDialog(description: string, title: string): void {
     this.dialog.open(InfoMovieComponent, {
       data: {
         Description: description,
+        Title: title,
       },
       width: '400px',
     });

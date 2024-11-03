@@ -2,33 +2,41 @@
 
 // IMPORTS
 // ----------------------------------------------------------------------------------------------------------
-import { Injectable } from '@angular/core'; // INJECTABLE OPERATOR (for marking class as a service that can be injected into other parts of the app)
+// INJECTABLE OPERATOR  ///////////////////////////// (for marking class as a service that can be injected into other parts of the app)
+import { Injectable } from '@angular/core';
+// RXJS  /////////////////////////////
 import { catchError, map } from 'rxjs/operators';
 // catchError: Operator for Error-Handling during Async Operations
 // map: Operator for returning errors when an HTTP request fails.
+import { Observable, throwError } from 'rxjs'; // Used to handle data streams that are returned from HTTP requests.
+// HTTP  /////////////////////////////
 import {
   HttpClient, // Allows sending HTTP requests
   HttpHeaders, // Helps set custom headers for HTTP requests (e.g., for authentication)
   HttpErrorResponse, // Represents error objects that occur when making HTTP requests.
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs'; // Used to handle data streams that are returned from HTTP requests.
 
 // BASE-SETTINGS
 // **************************************************************************************
 
-// DECLARING-API-URL (for providing data for the client app)
+// DECLARING-API-URL  /////////////////////////////  (for providing data for the client app)
 const apiUrl = 'https://kraftflix-api-d019e99d109c.herokuapp.com/';
 
-// INJECTABLE-DECORATOR (Allows the service to be available throughout the app)
-//  marks this class as a service
+/**
+ * INJECTABLE-DECORATOR
+ * ----------------------------------------------------------------------------------------------------------
+ * marks this class as a service
+ * allows the service to be available throughout the app (without declaring it in a module)
+ */
 @Injectable({
-  providedIn: 'root', // makes cervice be available throughout the app without declaring it in a module.
+  providedIn: 'root',
 })
 
-// SERVICE CLASS
+// COMPONENT ( SERVICE CLASS )
 // ----------------------------------------------------------------------------------------------------------
 export class FetchApiDataService {
-  // INJECTION-OF-HTTP-CLIENT
+  //
+  //  CONSTRUCTOR /////////////////////////////  (The constructor injects dependencies)
   constructor(private http: HttpClient) {}
   // Inject the HttpClient module into entire class (to the constructor params)
   // Allows sending HTTP requests
@@ -39,10 +47,12 @@ export class FetchApiDataService {
     const body = res;
     return body || {};
   }
+
   // GET-TOKEN
   private getToken(): string | null {
     return localStorage.getItem('token');
   }
+
   // GET-HEADERS
   private getHeaders(): HttpHeaders {
     const token = this.getToken();
@@ -51,9 +61,9 @@ export class FetchApiDataService {
     });
   }
 
-  // USERS-ENDPOINT-OPERATIONS  ---------------------------------------------
+  // USERS-ENDPOINT-OPERATIONS  *******************************************************
 
-  // CREATE-USER  (USER-REGISTRATION)
+  // CREATE-USER  (USER-REGISTRATION)  /////////////////////////////
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return (
@@ -65,14 +75,14 @@ export class FetchApiDataService {
     ); // The pipe operator is used to add additional processing steps. In this case, the catchError operator is used to catch possible errors.
   }
 
-  // LOGIN-USER
+  // LOGIN-USER  /////////////////////////////
   public userLogin(userDetails: any): Observable<any> {
     return this.http
       .post(`${apiUrl}login`, userDetails)
       .pipe(catchError(this.handleError));
   }
 
-  // EDIT-USER
+  // EDIT-USER  /////////////////////////////
   public editUser(userDetails: any): Observable<any> {
     return this.http
       .put(`${apiUrl}users/${userDetails.Username}`, userDetails, {
@@ -81,7 +91,7 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // DELETE-USER
+  // DELETE-USER  /////////////////////////////
   public deleteUser(userName: string): Observable<any> {
     return this.http
       .delete(`${apiUrl}users/${userName}`, {
@@ -91,7 +101,7 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // GET-SINGLE-USER
+  // GET-SINGLE-USER  /////////////////////////////
   public getSingleUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
@@ -100,17 +110,10 @@ export class FetchApiDataService {
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
-  // public getSingleUser(name: string): Observable<any> {
-  //   return this.http
-  //     .get(`${apiUrl}users/${name}`, {
-  //       headers: this.getHeaders(),
-  //     })
-  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
-  // }
 
-  // ADD-FAVORITE-MOVIE
-  // *****************************
+  // FAVORITE-MOVIE-OPERATIONS ( ADD-&-DELETE )  *******************************************************
 
+  // ADD-FAVORITE-MOVIE  /////////////////////////////
   public addFavoriteMovie(moviesID: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     console.log(user);
@@ -134,24 +137,7 @@ export class FetchApiDataService {
       );
   }
 
-  // public addFavoriteMovie(moviesID: string): Observable<any> {
-  //   const user = JSON.parse(localStorage.getItem('user') || '{}');
-  //   console.log(user);
-  //   console.log(moviesID);
-  //   return this.http
-  //     .post(
-  //       `${apiUrl}users/${user.Username}/movies/${moviesID}`,
-  //       {},
-  //       {
-  //         headers: this.getHeaders(),
-  //       }
-  //     )
-  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
-  // }
-
-  // DELETE-FAVORITE-MOVIE
-  // *******************************
-
+  // DELETE-FAVORITE-MOVIE  /////////////////////////////
   public deleteFavoriteMovie(moviesID: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
@@ -162,9 +148,9 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // MOVIES-ENDPOINT-OPERATIONS  ---------------------------------------------
+  // MOVIES-ENDPOINT-OPERATIONS  *******************************************************
 
-  // GET-ALL-MOVIES
+  // GET-ALL-MOVIES  /////////////////////////////
   public getAllMovies(): Observable<any> {
     return this.http
       .get(`${apiUrl}movies`, {
@@ -173,7 +159,7 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // GET-SINGLE-MOVIE
+  // GET-SINGLE-MOVIE  /////////////////////////////
   public getSingleMovie(title: string): Observable<any> {
     return this.http
       .get(`${apiUrl}movies/${title}`, {
@@ -182,7 +168,7 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // GET-DIRECTOR
+  // GET-DIRECTOR  /////////////////////////////
   public getDirector(directorName: string): Observable<any> {
     return this.http
       .get(`${apiUrl}movies/directors/${directorName}`, {
@@ -191,7 +177,7 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // GET-GENRE
+  // GET-GENRE  /////////////////////////////
   public getGenre(genreName: string): Observable<any> {
     return this.http
       .get(`${apiUrl}movies/genres/${genreName}`, {
@@ -200,6 +186,9 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
+  // ERROR-HANDLING  *******************************************************
+
+  // HANDLE-ERROR  /////////////////////////////
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

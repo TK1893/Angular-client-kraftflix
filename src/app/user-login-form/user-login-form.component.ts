@@ -3,16 +3,12 @@
 // IMPORTS
 // ----------------------------------------------------------------------------------------------------------
 import { Component, OnInit, Input } from '@angular/core';
-
 // You'll use this import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
-
 // This import brings in the API calls we created in 6.2
 import { FetchApiDataService } from '../fetch-api-data.service';
-
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 import { Router } from '@angular/router';
 
 // COMPONENT-CONFIGURATION
@@ -26,27 +22,29 @@ import { Router } from '@angular/router';
 // COMPONENT
 // ----------------------------------------------------------------------------------------------------------
 export class UserLoginFormComponent implements OnInit {
+  /**
+   * @-INPUT-DECORATOR /////////////////////////////
+   * allows the parent component to pass data (userData) to the child component.
+   */
   @Input() userData = { Username: '', Password: '', Email: '' };
 
-  // CONSTRUCTOR (The constructor injects dependencies)
+  //  CONSTRUCTOR /////////////////////////////
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    //Reference to the dialog that opened this component, so that the dialog can be closed after
-    // successful registration.
     public snackBar: MatSnackBar,
     private router: Router
   ) {}
 
+  //  NG-ON-INIT  /////////////////////////////
   ngOnInit(): void {}
+  // The OnInit-Interface is implemented in the component to manage its initialization logic.
 
-  // SENDING-LOGIN-FORM-INPUTS-TO-BACKEND
+  // LOGIN-USER-() /////////////////////////////
   loginUser(): void {
-    //
-    // calls the userRegistration method of the fetchApiData service and passes the userData object.
-    this.fetchApiData.userLogin(this.userData).subscribe(
-      // Success Callback
-      (result) => {
+    this.fetchApiData.userLogin(this.userData).subscribe({
+      // SUCCESS
+      next: (result) => {
         this.dialogRef.close(); // This will close the modal on success!
         console.log(result);
         localStorage.setItem('user', JSON.stringify(result.user));
@@ -58,16 +56,16 @@ export class UserLoginFormComponent implements OnInit {
         });
         this.router.navigate(['movies']);
       },
-      // Error Callback
-      (result) => {
+      // ERROR
+      error: (error) => {
         this.snackBar.open(
-          'Login failed - Please try again ' + `( ${result} )`,
+          'Login failed - Please try again ' + `(${error})`,
           'OK',
           {
             duration: 3000,
           }
         );
-      }
-    );
+      },
+    });
   }
 }
