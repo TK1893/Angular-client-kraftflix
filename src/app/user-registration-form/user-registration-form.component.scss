@@ -1,0 +1,23 @@
+// src\app\user-registration-form\user-registration-form.component.scss
+
+$font-heading: "Anton", sans-serif;
+$font-primary: "Roboto", sans-serif;
+$color-background: #141414;
+$color-primary: #7d00fa;
+$color-text: #ffffff;
+$color-title: #49454e;
+
+.custom-card-header {
+  .custom-card-title {
+    margin-top: 10px;
+    color: $color-title;
+  }
+}
+
+.custom-card-content {
+  margin-top: 15px;
+}
+
+.custom-card-actions {
+  margin-bottom: 8px;
+}

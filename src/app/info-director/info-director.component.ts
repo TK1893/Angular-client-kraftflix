@@ -3,7 +3,7 @@
 // IMPORTS
 // ----------------------------------------------------------------------------------------------------------
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-info-director',
@@ -21,9 +21,14 @@ export class InfoDirectorComponent implements OnInit {
     public data: {
       Name: string;
       Bio: string;
-    }
+    },
+    public dialogRef: MatDialogRef<InfoDirectorComponent>
   ) {}
 
   //  NG-ON-INIT /////////////////////////////
   ngOnInit(): void {}
+
+  closeDialogBox(): void {
+    this.dialogRef.close();
+  }
 }

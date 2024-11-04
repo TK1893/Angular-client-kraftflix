@@ -1,0 +1,69 @@
+// src\app\info-director\info-director.component.scss
+
+$font-heading: "Anton", sans-serif;
+$font-primary: "Roboto", sans-serif;
+$color-background: #141414;
+$color-primary: #7d00fa;
+$color-text: #f4e5fc;
+$color-title: #49454e;
+$color-logo: #7d00fa;
+
+.custom-card {
+  background-color: $color-text;
+  border: 0;
+}
+
+.custom-card-header {
+  .custom-card-title {
+    color: $color-background;
+    font-family: $font-heading;
+  }
+  //   .custom-card-subtitle {
+  //     color: $color-primary;
+  //   }
+}
+
+.custom-card-content {
+  margin-top: 0;
+  .custom-hr {
+    border: solid 1px $color-background;
+  }
+  p {
+    color: $color-background;
+    line-height: 1.5; /* 1.5-facher Zeilenabstand */
+  }
+}
+.custom-button {
+  margin-top: 10px;
+  border: solid 1px $color-background;
+  &:hover {
+    background-color: lighten($color-primary, 30%);
+  }
+}
+
+.custom-icon-button {
+  color: $color-text;
+  &:hover {
+    background-color: darken($color-primary, 45%);
+  }
+}
+
+// /* Responsive Adjustments */
+// @media (max-width: 480px) {
+// }
+
+// /* For screens 481px and larger */
+// @media (min-width: 481px) {
+// }
+
+// /* For screens 769px and larger */
+// @media (min-width: 769px) {
+// }
+
+// /* For screens 1025px and larger */
+// @media (min-width: 1025px) {
+// }
+
+// /* For extra large screens 1440px and larger */
+// @media (min-width: 1440px) {
+// }

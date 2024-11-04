@@ -1,10 +1,21 @@
 <!-- src\app\info-genre\info-genre.component.html -->
 
-<mat-card-header>
-    <mat-card-title>
-        {{data.Name}}
-    </mat-card-title>
-</mat-card-header>
-<mat-card-content>
-    <p>{{data.Description}}</p>
-</mat-card-content>
+<mat-card class="custom-card">
+    <mat-card-header class="custom-card-header">
+        <mat-card-title class="custom-card-title" style="margin-bottom: 10px;">{{data.Name}}</mat-card-title>
+
+    </mat-card-header>
+    <mat-card-content class="custom-card-content">
+        <hr class="custom-hr">
+        <p>{{data.Description}}</p>
+        <!-- <hr class="custom-hr"> -->
+
+    </mat-card-content>
+    <mat-card-actions class="custom-actions">
+        <!-- <button mat-raised-button (click)="closeDialogBox()" color="secondary">
+            Close
+        </button> -->
+        <button mat-stroked-button mat-dialog-close class="custom-button">Close</button>
+
+    </mat-card-actions>
+</mat-card>

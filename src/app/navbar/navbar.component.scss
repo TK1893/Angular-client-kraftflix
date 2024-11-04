@@ -1,19 +1,150 @@
-.spacer {
-  flex: 1 1 auto;
-}
+$font-heading: "Anton", sans-serif;
+$font-primary: "Roboto", sans-serif;
+$color-background: #141414;
+$color-primary: #7d00fa;
+$color-text: #f4e5fc;
 
 .nav-bar {
-  height: 200px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px; // Padding für die Navbar
+  height: 60px; // Höhe der Navbar
+  background-color: $color-background;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
   width: 100%;
+  z-index: 999;
+
+  .logo {
+    font-family: $font-heading;
+    color: $color-primary;
+    font-size: 1.6rem; // Default size for small screens
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .spacer {
+    flex: 1; // Spacer für Flexbox-Layout
+  }
+
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px; // Minimale Breite für die Buttons
+    height: 48px; // Minimale Höhe für die Buttons
+    background: none; // Hintergrund entfernen
+    border: none; // Rand entfernen
+    color: $color-text; // Textfarbe
+    cursor: pointer; // Mauszeiger als Hand
+    transition: all 0.2s; // Sanfte Übergänge
+    // margin-left: 16px; // Abstand zwischen den Buttons für große Displays
+
+    span {
+      font-size: 24px; // Standardgröße der Icons
+    }
+
+    &:first-of-type {
+      margin-left: 0; // Kein Abstand für den ersten Button
+    }
+
+    &:hover {
+      transform: scale(1.1); // Vergrößerung beim Hover
+      color: $color-primary;
+    }
+  }
 }
 
-.custom-toolbar {
-  padding: 0 50px;
+/* Responsive Styles */
+@media (max-width: 479px) {
+  .nav-bar {
+    height: 70px; // Höhe erhöhen für größere Mobilgeräte
+
+    .logo {
+      font-size: 2.5rem;
+    }
+
+    .nav-button {
+      margin-left: 0;
+      span {
+        font-size: 22px; // Erhöhte Icon-Größe
+      }
+    }
+  }
 }
-button {
-  margin: 0 15px;
+/* Min-width 480px (small tablets and larger mobile screens) */
+@media (min-width: 480px) {
+  .nav-bar {
+    height: 70px; // Höhe erhöhen für größere Mobilgeräte
+
+    .logo {
+      font-size: 3.5rem;
+    }
+
+    .nav-button {
+      span {
+        font-size: 28px; // Erhöhte Icon-Größe
+      }
+    }
+  }
+}
+
+/* Min-width 768px (tablets and larger screens) */
+@media (min-width: 768px) {
+  .nav-bar {
+    height: 80px; // Höhe weiter erhöhen
+
+    .logo {
+      font-size: 4rem;
+    }
+
+    .nav-button {
+      margin-left: 20px; // Größerer Abstand zwischen den Buttons
+
+      span {
+        font-size: 32px; // Weiter erhöhte Icon-Größe
+      }
+    }
+  }
+}
+
+/* Min-width 1024px (desktops and larger screens) */
+@media (min-width: 1024px) {
+  .nav-bar {
+    height: 100px; // Höhe auf 100px setzen
+    padding: 0 50px; // Padding der Navbar erhöhen
+
+    .logo {
+      font-size: 5rem;
+    }
+
+    .nav-button {
+      margin-left: 40px; // Noch größerer Abstand zwischen den Buttons
+
+      span {
+        font-size: 38px; // Größere Icon-Größe
+      }
+    }
+  }
+}
+
+/* Min-width 1440px (large desktops) */
+@media (min-width: 1440px) {
+  .nav-bar {
+    height: 130px; // Höhe auf 120px setzen
+    padding: 0 80px; // Padding weiter erhöhen
+
+    .logo {
+      font-size: 6.4rem;
+    }
+
+    .nav-button {
+      margin-left: 50px; // Größter Abstand zwischen den Buttons
+
+      span {
+        font-size: 40px; // Größte Icon-Größe
+      }
+    }
+  }
 }

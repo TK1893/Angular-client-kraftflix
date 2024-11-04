@@ -1,16 +1,133 @@
+$font-heading: "Anton", sans-serif;
+$font-primary: "Roboto", sans-serif;
+$color-background: #141414;
+$color-primary: #7d00fa;
+$color-text: #f4e5fc;
+$color-title: #49454e;
+$color-logo: #7d00fa;
+
+.main-page {
+  padding-bottom: 20px;
+}
+
 .card-container {
-  margin-top: 75px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px; /* Abstand zwischen den Cards */
-  padding: 16px;
 }
 
 .custom-card {
-  width: 100%;
-  box-sizing: border-box;
+  background-color: $color-background;
 }
+
+.custom-card-header {
+  margin-bottom: 10px;
+
+  .custom-card-title {
+    color: $color-text;
+    font-family: $font-heading;
+  }
+  .custom-card-subtitle {
+    color: $color-primary;
+  }
+}
+
+// .custom-card {
+//   width: 100%;
+//   box-sizing: border-box;
+// }
 
 .custom-card-image {
   height: 100%;
 }
+
+.custom-button {
+  &:hover {
+    background-color: darken($color-primary, 45%);
+  }
+}
+
+.custom-icon-button {
+  color: $color-text;
+  &:hover {
+    background-color: darken($color-primary, 45%);
+  }
+}
+
+/* Responsive Adjustments */
+
+@media (max-width: 480px) {
+  .spacer {
+    margin-top: 90px;
+  }
+
+  .main-page {
+    padding: 0 5px 20px 5px;
+  }
+}
+
+/* For screens 481px and larger */
+@media (min-width: 481px) {
+  .spacer {
+    margin-top: 95px;
+  }
+  .main-page {
+    padding: 0 15px 20px 15px;
+  }
+}
+
+/* For screens 769px and larger */
+@media (min-width: 769px) {
+  .spacer {
+    margin-top: 105px;
+  }
+
+  .main-page {
+    padding: 0 20px 20px 20px;
+  }
+}
+
+/* For screens 1025px and larger */
+@media (min-width: 1025px) {
+  .spacer {
+    margin-top: 125px;
+  }
+  .main-page {
+    padding: 0 30px 20px 30px;
+  }
+}
+
+/* For extra large screens 1440px and larger */
+@media (min-width: 1440px) {
+  .spacer {
+    margin-top: 160px;
+  }
+  .main-page {
+    padding: 0 0 20px 0;
+  }
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    max-width: calc(6 * 250px + 5 * 16px); // Maximale Breite für 6 Karten
+    margin: 0 auto; // Zentrieren der Cards
+  }
+}
+
+// /* Responsive Adjustments */
+// @media (max-width: 480px) {
+// }
+
+// /* For screens 481px and larger */
+// @media (min-width: 481px) {
+// }
+
+// /* For screens 769px and larger */
+// @media (min-width: 769px) {
+// }
+
+// /* For screens 1025px and larger */
+// @media (min-width: 1025px) {
+// }
+
+// /* For extra large screens 1440px and larger */
+// @media (min-width: 1440px) {
+// }

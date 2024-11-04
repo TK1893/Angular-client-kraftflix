@@ -80,15 +80,23 @@ export class MovieCardComponent implements OnInit {
       next: (response) => {
         console.log('Erfolgreich hinzugefügt:', response);
         this.getAPIUser();
-        this.snackBar.open('Film erfolgreich zu Favoriten hinzugefügt!', 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'The movie has been successfully added to your favorites!',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       },
       error: (error) => {
         console.error('Fehler beim Hinzufügen des Films:', error);
-        this.snackBar.open('Fehler beim Hinzufügen des Films', 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'Adding the favorite movie failed - Please try again!',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       },
     });
   }
@@ -99,15 +107,23 @@ export class MovieCardComponent implements OnInit {
       next: (response) => {
         console.log('Erfolgreich gelöscht:', response);
         this.getAPIUser();
-        this.snackBar.open('Film erfolgreich aus Favoriten entfernt!', 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'The movie has been successfully removed from your favorites!',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       },
       error: (error) => {
         console.error('Fehler beim Löschen des Films:', error);
-        this.snackBar.open('Fehler beim Löschen des Films', 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'Deleting the favorite movie failed - Please try again!',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       },
     });
   }

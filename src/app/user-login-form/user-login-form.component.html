@@ -1,9 +1,9 @@
 <!-- src\app\user-login-form\user-login-form.component.html -->
 
-<mat-card>
+<mat-card class="custom-card">
     <!-- HEADER -->
     <mat-card-header class="custom-card-header">
-        <mat-card-title>Log in!</mat-card-title>
+        <mat-card-title class="custom-card-title">Please login!</mat-card-title>
     </mat-card-header>
     <!-- CONTENT -->
     <mat-card-content class="custom-card-content">
@@ -26,8 +26,8 @@
         </form>
     </mat-card-content>
     <!-- ACTION-CONTAINER -->
-    <mat-card-actions>
-        <button mat-raised-button (click)="loginUser()" color="primary">
+    <mat-card-actions class="custom-card-actions">
+        <button mat-stroked-button (click)="loginUser()" color="primary" class="custom-button">
             Log in
         </button>
     </mat-card-actions>

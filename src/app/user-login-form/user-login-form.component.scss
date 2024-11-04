@@ -1,11 +1,23 @@
+// src\app\user-login-form\user-login-form.component.scss
+
+$font-heading: "Anton", sans-serif;
+$font-primary: "Roboto", sans-serif;
+$color-background: #141414;
+$color-primary: #7d00fa;
+$color-text: #ffffff;
+$color-title: #49454e;
+
 .custom-card-header {
-  background-color: #3f51b5; /* Beispiel-Hintergrundfarbe (indigo) */
-  padding: 16px; /* Beispiel-Padding */
-  color: white; /* Textfarbe für besseren Kontrast */
-  border-radius: 4px 4px 0 0; /* Optional: abgerundete Ecken am oberen Rand */
+  .custom-card-title {
+    margin-top: 10px;
+    color: $color-title;
+  }
 }
 
 .custom-card-content {
-  padding: 16px; /* Beispiel-Padding */
-  padding: 16px 16px 0 16px; /* Beispiel-Padding */
+  margin-top: 15px;
+}
+
+.custom-card-actions {
+  margin-bottom: 8px;
 }

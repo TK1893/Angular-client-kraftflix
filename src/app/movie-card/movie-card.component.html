@@ -3,26 +3,33 @@
 <!-- NAVIGATION-BAR -->
 <app-navbar></app-navbar>
 
+<!-- SPACER -->
+<div class="spacer">
+</div>
+
 <!-- MOVIE-CARDS -->
-<div class="card-container">
-    <mat-card *ngFor="let movie of movies; let i = index;" class="custom-card">
-        <mat-card-header>
-            <mat-card-title>{{ movie.Title }}</mat-card-title>
-            <mat-card-subtitle>({{ movie.Year }})</mat-card-subtitle>
-        </mat-card-header>
-        <img class="custom-card-image" src="{{ movie.Imageurl }}" alt="{{ movie.Title }}" />
-        <mat-card-actions>
-            <button mat-button color="primary"
-                (click)="openGenreDialog(movie.Genre.Name,movie.Genre.Description)">Genre</button>
-            <button mat-button color=" primary"
-                (click)="openDirectorDialog(movie.Director.Name,movie.Director.Bio)">Director</button>
-            <button mat-button color="primary"
-                (click)="openDescriptionDialog(movie.Description, movie.Title)">Synopsis</button>
-            <!-- Doesn't work -->
-            <button mat-icon-button color="warn"
-                (click)="isFavorite(movie._id) ? deleteFavorite(movie._id) : addFavorite(movie._id)">
-                <mat-icon>{{isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
-            </button>
-        </mat-card-actions>
-    </mat-card>
+<div class="main-page">
+    <div class="card-container">
+        <mat-card *ngFor="let movie of movies; let i = index;" class="custom-card">
+            <mat-card-header class="custom-card-header">
+                <mat-card-title class="custom-card-title">{{ movie.Title }}</mat-card-title>
+                <mat-card-subtitle class="custom-card-subtitle">({{ movie.Year }})</mat-card-subtitle>
+            </mat-card-header>
+            <img class="custom-card-image" src="{{ movie.Imageurl }}" alt="{{ movie.Title }}" />
+            <mat-card-actions>
+                <button mat-button class="custom-button"
+                    (click)="openGenreDialog(movie.Genre.Name,movie.Genre.Description)">Genre</button>
+                <button mat-button class="custom-button"
+                    (click)="openDirectorDialog(movie.Director.Name,movie.Director.Bio)">Director</button>
+                <button mat-button class="custom-button"
+                    (click)="openDescriptionDialog(movie.Description, movie.Title)">Synopsis</button>
+                <!-- Doesn't work -->
+                <button mat-icon-button class="custom-icon-button"
+                    (click)="isFavorite(movie._id) ? deleteFavorite(movie._id) : addFavorite(movie._id)">
+                    <mat-icon class="custom-icon">{{isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
 </div>

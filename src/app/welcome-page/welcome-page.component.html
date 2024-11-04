@@ -1,18 +1,21 @@
 <!-- src\app\welcome-page\welcome-page.component.html -->
 
 <div class="main-page">
-
     <!-- TITLE -->
     <h1>
-        Welcome to myFlix!
+        Welcome to <br><span class="logo">Kraftflix</span>
     </h1>
 
-    <!-- BUTTONS-FOR-LOGIN-OR-SIGNUP -->
-    <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary">
-        Sign Up
-    </button>
-    <button mat-raised-button color="primary" (click)="openUserLoginDialog()" style="margin-right: 10px;">
-        Login
-    </button>
+    <!-- Subtitle Slogan -->
+    <h2 class="slogan">Your Gateway to Unlimited Movie Data</h2>
 
+    <!-- Buttons for Login or Signup -->
+    <div class="button-container">
+        <button mat-stroked-button (click)="openUserRegistrationDialog()" color="primary">
+            Sign Up
+        </button>
+        <button mat-stroked-button color="primary" (click)="openUserLoginDialog()">
+            Login
+        </button>
+    </div>
 </div>

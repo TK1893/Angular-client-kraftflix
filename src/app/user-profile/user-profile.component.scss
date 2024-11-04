@@ -1,31 +1,126 @@
+// .spacer {
+//   margin-top: 100px;
+// }
+
+// .main-page {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+//   gap: 16px; /* Abstand zwischen den Cards */
+// }
+
+// // CARDS
+// .card-container {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+//   gap: 16px; /* Abstand zwischen den Cards */
+//   padding: 16px;
+// }
+
+// .custom-card {
+//   width: 100%;
+//   box-sizing: border-box;
+// }
+
+// .custom-card-image {
+//   height: 100%;
+// }
+
+// /** Responsive Adjustments
+// * ------------------------------------------------------------
+// */
+// @media (max-width: 480px) {
+// }
+
+// /* For screens 481px and larger */
+// @media (min-width: 481px) {
+// }
+
+// /* For screens 769px and larger */
+// @media (min-width: 769px) {
+// }
+
+// /* For screens 1025px and larger */
+// @media (min-width: 1025px) {
+// }
+
+// /* For extra large screens 1440px and larger */
+// @media (min-width: 1440px) {
+// }
+
 .spacer {
   margin-top: 100px;
 }
+// .main-page {
+//   display: grid;
+//   gap: 16px;
+//   justify-content: center;
+//   width: 100%;
 
-.custom-card {
-  margin: 20px 0;
-}
+//   // Mobile-First Ansatz: Standardlayout für kleine Bildschirme
+//   .profile-container {
+//     display: flex;
+//     flex-direction: column; // Beide Karten untereinander für kleine Bildschirme
+//     gap: 16px;
+//     width: 100%;
+//   }
 
-.card-container {
+//   // Für mittlere und größere Bildschirme (ab 769px)
+//   @media (min-width: 769px) {
+//     .profile-container {
+//       flex-direction: row; // Beide Karten nebeneinander in einer Zeile
+//     }
+//   }
+
+//   // Karten im Wrapper auf eine maximale Breite beschränken und zentrieren
+//   // .custom-card {
+//   //   width: 100%;
+//   // }
+// }
+
+.main-page {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px; /* Abstand zwischen den Cards */
-  padding: 16px;
-}
+  gap: 16px;
+  width: 90%; // Breite auf 90% setzen, um 5% Abstand links und rechts zu schaffen
+  margin: 0 auto; // Zentriert den Container auf der Seite
 
-.custom-card {
-  width: 100%;
-  box-sizing: border-box;
-}
+  // Mobile-First Ansatz: Standardlayout für kleine Bildschirme
+  .profile-container {
+    display: flex;
+    flex-direction: column; // Karten untereinander für kleine Bildschirme
+    gap: 16px;
+    width: 100%; // Profile-Container nimmt die volle Breite ein
+  }
 
-.custom-card-image {
-  height: 100%;
-}
+  // Für mittlere und größere Bildschirme (ab 769px)
+  @media (min-width: 769px) {
+    .profile-container {
+      flex-direction: row; // Karten nebeneinander für größere Bildschirme
+      gap: 16px;
+      justify-content: center; // Zentriert die Karten innerhalb des Containers
+    }
 
-.testButton {
-  margin: 200px 0;
-  button {
-    width: 250px;
-    font-size: 3rem;
+    .profile-card,
+    .update-card {
+      flex: 0 0 calc(50% - 8px); // Jedes nimmt 50% der Breite ein minus die Hälfte des Gaps
+      max-width: calc(
+        50% - 8px
+      ); // Maximale Breite von 50% minus die Hälfte des Gaps
+      margin: 0; // Keine zusätzlichen Margins
+    }
+  }
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px; /* Abstand zwischen den Cards */
+    padding: 16px;
+  }
+  // Karten-Styling für Favorite Movies
+  .favorites-card {
+    width: 100%; // Favorite Movies-Karte nimmt die volle Breite ein
+  }
+
+  // Allgemeines Styling für Karten
+  .custom-card {
+    box-sizing: border-box; // Berücksichtigt Padding und Border innerhalb der Breite
   }
 }

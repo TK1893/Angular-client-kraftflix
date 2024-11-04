@@ -1,9 +1,10 @@
 <!-- src\app\navbar\navbar.component.html -->
 
 <!-- NAV-BAR -->
-<div class="nav-bar">
+
+<!-- <div class="nav-bar">
     <mat-toolbar class="custom-toolbar">
-        <span>Kraftflix Movies</span>
+        <span class="logo">Kraftflix</span>
         <span class="spacer"></span>
         <button mat-icon-button (click)="openMovies()" class="movie-icon"
             aria-label="icon button with a clapperboard icon">
@@ -17,4 +18,19 @@
             <mat-icon>logout</mat-icon>
         </button>
     </mat-toolbar>
+</div> -->
+
+<!-- NAV-BAR -->
+<div class="nav-bar">
+    <div class="logo">Kraftflix</div>
+    <div class="spacer"></div>
+    <button class="nav-button" (click)="openMovies()" aria-label="Movies">
+        <span class="material-icons">movie</span>
+    </button>
+    <button class="nav-button" (click)="openProfile()" aria-label="Profile">
+        <span class="material-icons">account_circle</span>
+    </button>
+    <button class="nav-button" (click)="logoutUser()" aria-label="Logout">
+        <span class="material-icons">logout</span>
+    </button>
 </div>
