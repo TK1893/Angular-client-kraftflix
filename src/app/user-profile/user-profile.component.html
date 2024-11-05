@@ -6,16 +6,21 @@
 
 <!-- SPACER -->
 <!-- -------------------------------------------------------------------------------------- -->
-
 <div class="spacer"></div>
 
+<!-- MAIN-PAGE GRID -->
+<!-- -------------------------------------------------------------------------------------- -->
 <div class="main-page">
 
+    <!-- CONTAINER-FOR-"PROFILE-CARD & UPDATE-PROFILE-CARD" -->
     <div class="profile-container">
 
         <!-- PROFILE-DATA -->
         <!-- -------------------------------------------------------------------------------------- -->
+
+        <!-- PROFILE-DATA -->
         <mat-card class="custom-card profile-card">
+            <!-- HEADER -->
             <mat-card-header style="display: flex; align-items: center;">
                 <mat-icon aria-hidden="false" aria-label="Account icon" fontIcon="account_circle"
                     style="margin-right: 20px;">
@@ -25,51 +30,54 @@
                 </span>
             </mat-card-header>
 
+            <!-- CONTENT -->
             <mat-card-content>
-                <!-- <hr> -->
 
-                <p>USERNAME</p>
-                <p style="display: flex; align-items: center;">
-                    <mat-icon aria-hidden="false" aria-label="Peron icon" fontIcon="person" style="margin-right: 20px;">
-                    </mat-icon>
-                    <span>{{user.Username}}</span>
+                <!-- USERNAME-BLOCK -->
+                <p class="custom-heading">
+                    USERNAME
                 </p>
-                <hr>
-
-                <p>EMAIL ADRESS</p>
-                <p style="display: flex; align-items: center;">
-                    <mat-icon aria-hidden="false" aria-label="Peron icon" fontIcon="alternate_email"
-                        style="margin-right: 20px;">
+                <p class="custom-p">
+                    <mat-icon class="custom-p-icon" aria-hidden="false" aria-label="Peron icon" fontIcon="person">
                     </mat-icon>
-                    <span>{{user.Email}}</span>
-                </p>
-                <hr>
-
-                <p>BIRTHDATE</p>
-                <p style="display: flex; align-items: center;">
-                    <mat-icon aria-hidden="false" aria-label="Peron icon" fontIcon="cake" style="margin-right: 20px;">
-                    </mat-icon>
-                    <span>{{user.Birthdate | date:'longDate' }}</span>
+                    <span class="custom-span"> {{user.Username}}</span>
                 </p>
 
+                <!-- EMAIL-BLOCK -->
+                <p class="custom-heading">
+                    EMAIL ADRESS
+                </p>
+                <p class="custom-p">
+                    <mat-icon class="custom-p-icon" aria-hidden="false" aria-label="Email icon"
+                        fontIcon="alternate_email">
+                    </mat-icon>
+                    <span class="custom-span"> {{user.Email}}</span>
+                </p>
 
-                <mat-card-actions>
-                    <button mat-button color="primary" (click)="deleteUserProfile()">Delete Your Profile</button>
-                </mat-card-actions>
-
-                <!-- <mat-card-actions>
-            <button mat-button color="primary" (click)="updateUserProfile()">Update Your Data</button>
-        </mat-card-actions> -->
+                <!-- BIRTHDATE-BLOCK -->
+                <p class="custom-heading">
+                    BIRTHDATE
+                </p>
+                <p class="custom-p">
+                    <mat-icon class="custom-p-icon" aria-hidden="false" aria-label="Cake icon" fontIcon="cake">
+                    </mat-icon>
+                    <span class="custom-span"> {{user.Birthdate | date:'longDate' }}</span>
+                </p>
             </mat-card-content>
+
+            <!-- ACTIONS -->
+            <mat-card-actions>
+                <button mat-stroked-button class="custom-button" (click)="deleteUserProfile()">Delete Your
+                    Profile</button>
+            </mat-card-actions>
         </mat-card>
 
         <!-- UPDATE PROFILE -->
         <!-- -------------------------------------------------------------------------------------- -->
+
+        <!-- UPDATE-PROFILE-CARD -->
         <mat-card class="custom-card update-card">
             <!-- HEADER -->
-            <!-- <mat-card-header class="custom-card-header">
-            <mat-card-title>Update Your Profile</mat-card-title>
-        </mat-card-header> -->
             <mat-card-header style="display: flex; align-items: center;">
                 <mat-icon aria-hidden="false" aria-label="Update Account Icon" fontIcon="update"
                     style="margin-right: 20px;">
@@ -79,32 +87,43 @@
                 </span>
             </mat-card-header>
 
-            <!-- FORM - UPDATE USER DATA -->
+            <!-- CARD-CONTENT -->
             <mat-card-content class="custom-card-content">
-                <form>
+
+                <!-- FORM -->
+                <form class="custom-form">
                     <!-- USERNAME -->
-                    <mat-form-field>
+                    <mat-form-field appearance="outline" class="custom-form-field">
+                        <mat-label><mat-icon aria-hidden="false" aria-label="Person icon" fontIcon="person"></mat-icon>
+                            <strong> Please update Username</strong>
+                        </mat-label>
                         <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text"
-                            name="Username" required />
+                            name="Username">
                     </mat-form-field>
 
                     <!-- PASSWORD -->
-                    <mat-form-field>
-                        <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password"
-                            name="Password" required />
+                    <mat-form-field appearance="outline" class="custom-form-field">
+                        <mat-label><mat-icon aria-hidden="false" aria-label="Password icon" fontIcon="key"></mat-icon>
+                            <strong> Please update Password</strong>
+                        </mat-label>
+                        <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password"
+                            name="Password">
                     </mat-form-field>
 
                     <!-- EMAIL -->
-                    <mat-form-field>
-                        <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email"
-                            required />
+                    <mat-form-field appearance="outline" class="custom-form-field">
+                        <mat-label><mat-icon aria-hidden="false" aria-label="Email icon"
+                                fontIcon="alternate_email"></mat-icon>
+                            <strong> Please update Email Adress</strong>
+                        </mat-label>
+                        <input matInput [(ngModel)]="userData.Email" placeholder="Email" type="email" name="Email">
                     </mat-form-field>
                 </form>
             </mat-card-content>
 
             <!-- ACTION-CONTAINER -->
             <mat-card-actions>
-                <button mat-raised-button (click)="updateUserProfile()" color="primary">
+                <button mat-stroked-button (click)="updateUserProfile()" class="custom-button">
                     Update Profile
                 </button>
             </mat-card-actions>
@@ -115,7 +134,7 @@
     <!-- -------------------------------------------------------------------------------------- -->
 
     <mat-card class="custom-card favorites-card">
-        <mat-card-header style="display: flex; align-items: center;">
+        <mat-card-header class="custom-header" style="display: flex; align-items: center; margin-bottom: 20px;">
             <mat-icon aria-hidden="false" aria-label="Movie icon" fontIcon="movie" style="margin-right: 20px;">
             </mat-icon>
             <span>
@@ -125,18 +144,20 @@
         <mat-card-content>
 
             <div class="card-container">
-                <mat-card *ngFor="let movie of favMoviesObjects; let i = index;" class="custom-card">
-                    <mat-card-header>
-                        <mat-card-title>{{ movie.Title }}</mat-card-title>
-                        <mat-card-subtitle>({{ movie.Year }})</mat-card-subtitle>
-                    </mat-card-header>
-                    <img class="custom-card-image" src="{{ movie.Imageurl }}" alt="{{ movie.Title }}" />
-                    <mat-card-actions>
-                        <button mat-icon-button color="warn"
+                <mat-card *ngFor="let movie of favMoviesObjects; let i = index;" class="custom-movie-card">
+                    <!-- <mat-card-header class="custom-movie-header">
+                        <mat-card-subtitle class="custom-movie-title">{{ movie.Title }}</mat-card-subtitle>
+                    </mat-card-header> -->
+                    <img mat-card-image class="custom-movie-image" src="{{ movie.Imageurl }}" alt="{{ movie.Title }}" />
+
+                    <mat-card-footer class="custom-movie-footer">
+                        <!-- <p>Pulp Fiction</p> -->
+                        <button mat-icon-button class="custom-icon-button"
                             (click)="isFavorite(movie._id) ? deleteFavorite(movie._id) : addFavorite(movie._id)">
-                            <mat-icon>{{isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+                            <mat-icon class="custom-icon">{{isFavorite(movie._id) ? 'favorite' : 'favorite_border'
+                                }}</mat-icon>
                         </button>
-                    </mat-card-actions>
+                    </mat-card-footer>
                 </mat-card>
             </div>
 

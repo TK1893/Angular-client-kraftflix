@@ -1,82 +1,14 @@
-// .spacer {
-//   margin-top: 100px;
-// }
+// src\app\user-profile\user-profile.component.scss
 
-// .main-page {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-//   gap: 16px; /* Abstand zwischen den Cards */
-// }
+$font-heading: "Anton", sans-serif;
+$font-primary: "Roboto", sans-serif;
+$color-background: #141414;
+$color-primary: #7d00fa;
+$color-text: #f4e5fc;
+$color-title: #49454e;
+$color-logo: #7d00fa;
 
-// // CARDS
-// .card-container {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-//   gap: 16px; /* Abstand zwischen den Cards */
-//   padding: 16px;
-// }
-
-// .custom-card {
-//   width: 100%;
-//   box-sizing: border-box;
-// }
-
-// .custom-card-image {
-//   height: 100%;
-// }
-
-// /** Responsive Adjustments
-// * ------------------------------------------------------------
-// */
-// @media (max-width: 480px) {
-// }
-
-// /* For screens 481px and larger */
-// @media (min-width: 481px) {
-// }
-
-// /* For screens 769px and larger */
-// @media (min-width: 769px) {
-// }
-
-// /* For screens 1025px and larger */
-// @media (min-width: 1025px) {
-// }
-
-// /* For extra large screens 1440px and larger */
-// @media (min-width: 1440px) {
-// }
-
-.spacer {
-  margin-top: 100px;
-}
-// .main-page {
-//   display: grid;
-//   gap: 16px;
-//   justify-content: center;
-//   width: 100%;
-
-//   // Mobile-First Ansatz: Standardlayout für kleine Bildschirme
-//   .profile-container {
-//     display: flex;
-//     flex-direction: column; // Beide Karten untereinander für kleine Bildschirme
-//     gap: 16px;
-//     width: 100%;
-//   }
-
-//   // Für mittlere und größere Bildschirme (ab 769px)
-//   @media (min-width: 769px) {
-//     .profile-container {
-//       flex-direction: row; // Beide Karten nebeneinander in einer Zeile
-//     }
-//   }
-
-//   // Karten im Wrapper auf eine maximale Breite beschränken und zentrieren
-//   // .custom-card {
-//   //   width: 100%;
-//   // }
-// }
-
+// MAIN-PAGE & GRID  ----------------------------------------
 .main-page {
   display: grid;
   gap: 16px;
@@ -108,19 +40,197 @@
       margin: 0; // Keine zusätzlichen Margins
     }
   }
+
+  // FAVORITE-MOVIES ----------------------------------------
+
+  // CONTAINER-MOVIE-CARDS
   .card-container {
+    // background-color: $color-primary;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    // border: 1px solid $color-primary;
+    border-radius: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 16px; /* Abstand zwischen den Cards */
     padding: 16px;
   }
-  // Karten-Styling für Favorite Movies
-  .favorites-card {
-    width: 100%; // Favorite Movies-Karte nimmt die volle Breite ein
+
+  // MOVIE-CARD
+  .custom-movie-card {
+    background-color: $color-primary;
+    border: 1px solid $color-primary;
+    // background-color: $color-text;
+    // border: 1px solid $color-text;
+    box-sizing: border-box; // Berücksichtigt Padding und Border innerhalb der Breite
+    // MOVIE-HEADER
+    .custom-movie-header {
+      // padding: 8px;
+      // margin-bottom: 10px;
+      // MOVIE-TITLE
+      .custom-movie-title {
+        color: $color-primary;
+        font-family: $font-heading;
+      }
+      // MOVIE-SUBTITLE
+      .custom-card-subtitle {
+        color: $color-primary;
+      }
+    }
+    // MOVIE-IMAGE
+    .custom-movie-image {
+      height: 100%;
+    }
+    //FAVORITE-BUTTON
+    .custom-icon-button {
+      .custom-icon {
+        color: $color-background;
+      }
+      &:hover {
+        background-color: darken($color-primary, 20%);
+      }
+    }
   }
 
-  // Allgemeines Styling für Karten
-  .custom-card {
-    box-sizing: border-box; // Berücksichtigt Padding und Border innerhalb der Breite
+  // .custom-movie-footer {
+  //   background-color: $color-primary;
+  //   border: 1px solid $color-primary;
+  // }
+}
+
+// USER-PROFILE -----------------------------------------
+// HEADING
+.custom-heading {
+  background-color: $color-background;
+  color: $color-primary;
+  border: 1px solid $color-primary;
+  border-radius: 10px 10px 0 0;
+  border-bottom: none;
+  margin: 1rem 0 0 0;
+  padding-left: 1rem;
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  // margin: 10px 0 0 0;
+  // background-color: $color-primary;
+}
+// P (BINDED-DATA)
+.custom-p {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border: 1px solid $color-primary;
+  background-color: $color-primary;
+  // border-top: none;
+
+  height: auto;
+  border-radius: 0 0 10px 10px;
+  // background-color: $color-text;
+}
+.custom-span {
+  text-indent: 0.5rem;
+  color: $color-background;
+}
+.custom-p-icon {
+  color: $color-background;
+  display: flex;
+  align-items: center;
+  margin-left: 0.7rem;
+}
+
+// UPDATE PROFILE ----------------------------------------
+
+// FORM
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 90%;
+  // margin: 0 auto; // Zentriert den Container auf der Seite
+  padding: 10px 0 0 0;
+
+  .custom-form-field {
+    mat-label {
+      color: $color-primary;
+    }
+    // background-color: $color-background;
+    width: 100%;
+    input {
+      background-color: $color-background;
+      color: $color-primary;
+    }
+  }
+}
+
+// CARD ----------------------------------------
+.custom-card {
+  background-color: $color-background;
+  width: 100%; // Favorite Movies-Karte nimmt die volle Breite ein
+  // mat-card-header {
+  //   margin: 0 0 10px 0;
+  // }
+
+  mat-card-header {
+    margin-bottom: 0.5rem;
+
+    mat-card-title {
+      color: $color-primary;
+      font-family: $font-heading;
+    }
+    mat-icon {
+      color: $color-primary;
+    }
+  }
+}
+.custom-card-content {
+  margin-top: 12px;
+  // border: 1px solid $color-primary;
+  border-radius: 10px;
+}
+
+mat-card-actions {
+  .custom-button {
+    margin: 10px;
+    border: 1px solid $color-primary;
+  }
+}
+
+/** Responsive Adjustments
+* ------------------------------------------------------------
+*/
+@media (max-width: 480px) {
+  //SPACER
+  .spacer {
+    margin-top: 85px;
+  }
+}
+
+/* For screens 481px and larger */
+@media (min-width: 481px) {
+  //SPACER
+  .spacer {
+    margin-top: 90px;
+  }
+}
+
+/* For screens 769px and larger */
+@media (min-width: 769px) {
+  //SPACER
+  .spacer {
+    margin-top: 100px;
+  }
+}
+
+/* For screens 1025px and larger */
+@media (min-width: 1025px) {
+  //SPACER
+  .spacer {
+    margin-top: 120px;
+  }
+}
+
+/* For extra large screens 1440px and larger */
+@media (min-width: 1440px) {
+  //SPACER
+  .spacer {
+    margin-top: 150px;
   }
 }

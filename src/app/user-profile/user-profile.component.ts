@@ -120,7 +120,7 @@ export class UserProfileComponent implements OnInit {
       next: (response) => {
         console.log('Erfolgreich hinzugefügt:', response);
         this.getAPIUser(); // Aktualisiere die Benutzerdaten
-        this.snackBar.open('Film erfolgreich zu Favoriten hinzugefügt!', 'OK', {
+        this.snackBar.open('Movie successfully deleted from favorites!', 'OK', {
           duration: 2000,
         });
         // Aktualisiere die Favoriten-Liste im UI
@@ -128,9 +128,13 @@ export class UserProfileComponent implements OnInit {
       },
       error: (error) => {
         console.error('Fehler beim Hinzufügen des Films:', error);
-        this.snackBar.open('Fehler beim Hinzufügen des Films', 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'Error deleting movie from favorites - please try again!',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       },
     });
   }
@@ -154,13 +158,13 @@ export class UserProfileComponent implements OnInit {
           this.favMoviesObjects = [];
         }
 
-        this.snackBar.open('Film erfolgreich aus Favoriten entfernt!', 'OK', {
+        this.snackBar.open('Movie successfully deleted from favorites!', 'OK', {
           duration: 2000,
         });
       },
       error: (error) => {
         console.error('Fehler beim Löschen des Films:', error);
-        this.snackBar.open('Fehler beim Löschen des Films', 'OK', {
+        this.snackBar.open('Failed to delete - please try again', 'OK', {
           duration: 2000,
         });
       },
@@ -214,17 +218,25 @@ export class UserProfileComponent implements OnInit {
     this.fetchApiData.editUser(this.userData).subscribe({
       next: (result) => {
         console.log('Profile updated successfully:', result);
-        this.snackBar.open('Your profile has been updated!', 'OK', {
-          duration: 3000,
-        });
+        this.snackBar.open(
+          'Your profile has been successfully updated!',
+          'OK',
+          {
+            duration: 3000,
+          }
+        );
         // Aktualisiert die Benutzerinformationen im UI
         this.getAPIUser();
       },
       error: (error) => {
         console.error('Error updating profile:', error);
-        this.snackBar.open('Failed to update profile', 'OK', {
-          duration: 3000,
-        });
+        this.snackBar.open(
+          'Your profile has been successfully updated!',
+          'OK',
+          {
+            duration: 3000,
+          }
+        );
       },
     });
   }
