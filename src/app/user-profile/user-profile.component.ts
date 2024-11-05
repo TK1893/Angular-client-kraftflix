@@ -183,18 +183,26 @@ export class UserProfileComponent implements OnInit {
     ) {
       this.fetchApiData.deleteUser(userToDelete).subscribe({
         next: (response) => {
-          console.log('User erfolgreich gelöscht:', response);
-          this.snackBar.open('Film erfolgreich aus Favoriten entfernt!', 'OK', {
-            duration: 2000,
-          });
+          console.log('User successfully deleted:', response);
+          this.snackBar.open(
+            'Your profile has been successfully deleted!',
+            'OK',
+            {
+              duration: 2000,
+            }
+          );
           this.navigationBar.logoutUser();
         },
 
         error: (error) => {
-          console.error('Fehler beim Löschen des Films:', error);
-          this.snackBar.open('Fehler beim Löschen des Films', 'OK', {
-            duration: 2000,
-          });
+          console.error('Error deleting profile: ', error);
+          this.snackBar.open(
+            'Error deleting profile - Please try again',
+            'OK',
+            {
+              duration: 2000,
+            }
+          );
         },
       });
     }
@@ -230,13 +238,9 @@ export class UserProfileComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error updating profile:', error);
-        this.snackBar.open(
-          'Your profile has been successfully updated!',
-          'OK',
-          {
-            duration: 3000,
-          }
-        );
+        this.snackBar.open('Error updating profile - Please try again', 'OK', {
+          duration: 3000,
+        });
       },
     });
   }

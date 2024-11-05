@@ -16,7 +16,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
-  styleUrl: '../user-login-form/user-login-form.component.scss',
+  styleUrl: '../user-registration-form/user-registration-form.component.scss',
 })
 
 // COMPONENT
@@ -56,9 +56,13 @@ export class UserRegistrationFormComponent implements OnInit {
       },
       // Error Callback
       error: (error) => {
-        this.snackBar.open(error, 'OK', {
-          duration: 3000,
-        });
+        this.snackBar.open(
+          'Signup failed - Please try again' + `(${error})`,
+          'OK',
+          {
+            duration: 3000,
+          }
+        );
       },
     });
   }

@@ -1,10 +1,15 @@
 <!-- src\app\user-registration-form\user-registration-form.component.html -->
 
-<mat-card>
+<mat-card class="custom-card">
     <!-- HEADER -->
     <mat-card-header class="custom-card-header">
-        <mat-card-title class="custom-card-title">Sign Up!</mat-card-title>
+        <mat-icon aria-hidden="false" aria-label="Logoin Icon" fontIcon="login">
+        </mat-icon>
+        <span>
+            <mat-card-title class="custom-card-title">PLEASE SIGN UP</mat-card-title>
+        </span>
     </mat-card-header>
+
     <!-- CONTENT -->
     <mat-card-content class="custom-card-content">
         <!-- FORM -->
@@ -31,9 +36,9 @@
         </form>
     </mat-card-content>
     <!-- ACTION-CONTAINER -->
-    <mat-card-actions>
-        <button mat-stroked-button (click)="registerUser()" color="primary">
-            Sign Up
+    <mat-card-actions class="custom-card-actions">
+        <button mat-stroked-button (click)="registerUser()" class="custom-card-button">
+            SIGNUP
         </button>
     </mat-card-actions>
 </mat-card>

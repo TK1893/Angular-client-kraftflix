@@ -1,10 +1,66 @@
 <!-- src\app\user-login-form\user-login-form.component.html -->
 
+<!-- <mat-card class="custom-card"> -->
+<!-- HEADER -->
+<!-- <mat-card-header style="display: flex; align-items: center;">
+        <mat-icon aria-hidden="false" aria-label="Logoin Icon" fontIcon="login" style="margin-right: 20px;">
+        </mat-icon>
+        <span>
+            <mat-card-title>PLEASE LOGIN</mat-card-title>
+        </span>
+    </mat-card-header> -->
+
+<!-- CARD-CONTENT -->
+<!-- <mat-card-content class="custom-card-content"> -->
+
+<!-- FORM -->
+<!-- <form class="custom-form"> -->
+<!-- USERNAME -->
+<!-- <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label><mat-icon aria-hidden="false" aria-label="Person icon" fontIcon="person"></mat-icon>
+                    <strong> Enter Username </strong>
+                </mat-label>
+                <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username">
+            </mat-form-field> -->
+
+<!-- PASSWORD -->
+<!-- <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label><mat-icon aria-hidden="false" aria-label="Password icon" fontIcon="key"></mat-icon>
+                    <strong> Enter Password</strong>
+                </mat-label>
+                <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password" name="Password">
+            </mat-form-field> -->
+
+<!-- EMAIL -->
+<!-- <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label><mat-icon aria-hidden="false" aria-label="Email icon" fontIcon="alternate_email"></mat-icon>
+                    <strong> Enter Email Adress</strong>
+                </mat-label>
+                <input matInput [(ngModel)]="userData.Email" placeholder="Email" type="email" name="Email">
+            </mat-form-field>
+        </form>
+    </mat-card-content> -->
+
+<!-- ACTION-CONTAINER -->
+<!-- <mat-card-actions>
+        <button mat-stroked-button (click)="loginUser()" class="custom-button">
+            LOGIN
+        </button>
+    </mat-card-actions>
+</mat-card> -->
+
+<!-- ------------------------------------------------------------------------------------------- -->
+
 <mat-card class="custom-card">
     <!-- HEADER -->
     <mat-card-header class="custom-card-header">
-        <mat-card-title class="custom-card-title">Please login!</mat-card-title>
+        <mat-icon aria-hidden="false" aria-label="Logoin Icon" fontIcon="login" style="margin-right: 20px;">
+        </mat-icon>
+        <span>
+            <mat-card-title class="custom-card-title">PLEASE LOG IN</mat-card-title>
+        </span>
     </mat-card-header>
+
     <!-- CONTENT -->
     <mat-card-content class="custom-card-content">
         <!-- FORM -->
@@ -18,17 +74,20 @@
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
                     required>
+                <!-- Two-way data binding (binds the value of the input field to the Username property of the userData object in the component) -->
             </mat-form-field>
             <!-- EMAIL -->
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email" required>
             </mat-form-field>
+            <!-- BIRTHDATE -->
+
         </form>
     </mat-card-content>
     <!-- ACTION-CONTAINER -->
     <mat-card-actions class="custom-card-actions">
-        <button mat-stroked-button (click)="loginUser()" color="primary" class="custom-button">
-            Log in
+        <button mat-stroked-button (click)="loginUser()" class="custom-card-button">
+            LOGIN
         </button>
     </mat-card-actions>
 </mat-card>

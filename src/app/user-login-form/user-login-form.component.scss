@@ -1,16 +1,26 @@
-// src\app\user-login-form\user-login-form.component.scss
+// src\app\user-registration-form\user-registration-form.component.scss
 
 $font-heading: "Anton", sans-serif;
 $font-primary: "Roboto", sans-serif;
 $color-background: #141414;
 $color-primary: #7d00fa;
-$color-text: #ffffff;
+$color-text: #f4e5fc;
 $color-title: #49454e;
 
 .custom-card-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+
   .custom-card-title {
-    margin-top: 10px;
-    color: $color-title;
+    font-family: $font-primary;
+    color: $color-primary;
+    // font-weight: 600;
+  }
+  mat-icon {
+    color: $color-primary;
+    margin-right: 12px;
+    // font-weight: 700;
   }
 }
 
@@ -19,5 +29,18 @@ $color-title: #49454e;
 }
 
 .custom-card-actions {
-  margin-bottom: 8px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-left: 8px;
+
+  .custom-card-button {
+    border: solid 1px $color-primary;
+    color: $color-background;
+    &:hover {
+      background-color: lighten($color-primary, 40%);
+    }
+  }
+}
+.mdc-button__label {
+  color: $color-text;
 }
