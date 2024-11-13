@@ -51,9 +51,9 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
 
 - The user can use buttons on the single movie cards to display detailed views with additional information about the desired movie.
 - Each card contains three buttons:
-  - **`Director`** : Provides information about the director of the selected movie.
-  - **`Genre`** : Shows details about the genre of the selected movie.
-  - **`Synopsis`** : Displays the plot of the selected movie.
+  - **`Director`** - Provides information about the director of the selected movie.
+  - **`Genre`** - Shows details about the genre of the selected movie.
+  - **`Synopsis`** - Displays the plot of the selected movie.
 
 ### 4. **User Profile**
 
@@ -96,24 +96,24 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
 
 - For environment setup and dependency management.
 
-#### 4. **Angular CLI**
+#### 2. **Angular CLI**
 
 - Facilitates project setup and management.
 
-#### 5. **GitHub Pages**
+#### 3. **GitHub Pages**
 
 - For App hosting.
 
 ### `Project Management Tool`
 
-#### 1. **Trello**
+#### **Trello**
 
 - for Agile project management
 - Kanban Board used to organize tasks with user stories and track progress using story points.
 
 ### `Documentation and Commenting`
 
-#### 1. **TypeDoc**
+#### **TypeDoc**
 
 - For generating inline code documentation.
 
@@ -123,7 +123,7 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
 
 ## Installation and Setup
 
-### 1. **Clone the Repository**
+### 1. **`Clone the Repository`**
 
 - To run the project locally, clone the repository:
   ```bash
@@ -131,14 +131,14 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
   cd Angular-client-kraftflix
   ```
 
-### 2. **Install Dependencies**
+### 2. **`Install Dependencies`**
 
 - Make sure you have Node.js and npm installed, then install the necessary dependencies:
   ```bash
   npm install
   ```
 
-### 3. **Start the Development Server**
+### 3. **`Start the Development Server`**
 
 - Start the Angular development server:
   ```bash
@@ -146,7 +146,7 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
   ```
 - The application should now be available at `http://localhost:4200`.
 
-### 4. **Build for Production**
+### 4. **`Build for Production`**
 
 - To build the application for production, use:
   ```bash
