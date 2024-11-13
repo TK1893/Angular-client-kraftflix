@@ -24,6 +24,13 @@
       "dom"
     ]
   },
+  "typedocOptions": {
+    "entryPoints": ["src/app/**/*"],
+    "out": "docs"
+  },
+  "include": [
+    "src/app/**/*",      // Alle Dateien und Unterordner in src/app
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

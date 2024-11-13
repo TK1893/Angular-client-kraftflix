@@ -2,15 +2,25 @@
 
 // IMPORTS
 // ----------------------------------------------------------------------------------------------------------
+// Imports Angular core classes: Component, OnInit for lifecycle hooks, Injectable to mark services, and Input for parent-to-child data binding
 import { Component, OnInit, Injectable, Input } from '@angular/core';
+// Service that handles API interactions related to user and movie data
 import { FetchApiDataService } from '../fetch-api-data.service';
+// Angular Material Dialog component for displaying modal dialogs
 import { MatDialog } from '@angular/material/dialog';
+// Angular Material Snackbar for displaying brief messages in pop-up style at the bottom of the screen
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NavbarComponent } from '../navbar/navbar.component';
+// Angular Router for handling route navigation after actions
 import { Router } from '@angular/router';
+// Navbar component reference, used for handling user logout upon profile deletion
+import { NavbarComponent } from '../navbar/navbar.component';
 
 // COMPONENT-CONFIGURATION
 // ----------------------------------------------------------------------------------------------------------
+/**
+ * Component for displaying and managing user profile information.
+ * It interacts with the FetchApiDataService to retrieve and modify user data and favorites.
+ */
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -31,6 +41,14 @@ import { Router } from '@angular/router';
 export class UserProfileComponent implements OnInit {
   //
   //  CONSTRUCTOR /////////////////////////////
+  /**
+   * Initializes component dependencies and services.
+   * @param {FetchApiDataService} fetchApiData - Service for fetching API data.
+   * @param {NavbarComponent} navigationBar - Navbar component reference for handling navigation
+   * @param {MatSnackBar} snackBar - Material Snackbar for displaying messages
+   * @param {MatDialog} dialog - Material Dialog for modal windows
+   * @param {Router} router - Angular Router for navigation
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public navigationBar: NavbarComponent,
@@ -40,12 +58,29 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   //  VARIABLES  /////////////////////////////
+  /**
+   * Array to store all movies retrieved from the API.
+   * Used to populate the user's list of available movies.
+   */
   movies: any[] = [];
+  /**
+   * User data retrieved from the API.
+   * Contains user-specific data such as username and email.
+   */
   user: any = {};
+  /**
+   * Array of IDs of the user's favorite movies.
+   * Used to match against available movies for marking favorites.
+   */
   favMovies: any[] = [];
+  /**
+   * Array of favorite movie objects with full details.
+   * Populated based on IDs in `favMovies`.
+   */
   favMoviesObjects: any[] = [];
 
-  /**  @-INPUT-DECORATOR /////////////////////////////
+  // @-INPUT-DECORATOR /////////////////////////////
+  /**
    * allows the parent component to pass data (userData) to the child component.
    */
   @Input() userData = {
@@ -55,12 +90,27 @@ export class UserProfileComponent implements OnInit {
   };
 
   //  NG-ON-INIT  /////////////////////////////
+  /**
+   * Angular lifecycle hook.
+   *
+   * Called when the component is initialized.
+   *
+   * It invokes `getAPIMovies()` and `getAPIUser()` to load the movies and user data.
+   * @returns {void}
+   */
   ngOnInit(): void {
     this.getAPIMovies();
     this.getAPIUser();
   }
 
+  // METHODS
+  // ----------------------------------------------------------------------------------------------------------
+
   // INITIALIZE-FAVORITES /////////////////////////////
+  /**
+   * Initializes the user's favorite movies after data retrieval.
+   * Ensures favorite movies list is only populated when both movies and favorite IDs are available.
+   */
   initializeFavorites(): void {
     // Ensure both movies and favMovies are loaded before setting favMoviesObjects
     if (this.movies.length > 0 && this.favMovies.length > 0) {
@@ -69,6 +119,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   // SET-FAVORITE-MOVIES-OBJECTS /////////////////////////////
+  /**
+   * Populates the favorite movie objects list based on movie IDs.
+   * Matches movies in the general list with those marked as favorites.
+   */
   setFavoriteMoviesObjects(): void {
     // Filter the movies array based on the IDs in favMovies array
     this.favMoviesObjects = this.movies.filter((movie) =>
@@ -78,6 +132,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   // GET-API-MOVIES  /////////////////////////////
+  /**
+   * Retrieves all movies from the API.
+   * Saves the data in `movies` and initializes favorites list.
+   */
   getAPIMovies(): void {
     // fetch api-movies & save it in [movies]-variable
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -89,6 +147,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   // GET-API-USER  /////////////////////////////
+  /**
+   * Retrieves user data from the API and sets user details.
+   * Populates username, email, and favorite movies data for the user.
+   */
   getAPIUser(): void {
     // fetch api-user & save it in [user]-variable
     this.fetchApiData.getSingleUser().subscribe((resp: any) => {
@@ -104,6 +166,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   // IS-MOVIE-FAVORITE-CHECK-?  /////////////////////////////
+  /**
+   * Checks if a movie is in the user's favorites list.
+   * @param movieID - The ID of the movie to check.
+   * @returns `true` if the movie is a favorite, otherwise `false`.
+   */
   isFavorite(movieID: string): boolean {
     console.log(
       'Ist er ein Favorite?: ',
@@ -115,6 +182,10 @@ export class UserProfileComponent implements OnInit {
   // ADD & DELETE FAVORITE MOVIES *******************************************************
 
   //  ADD-FAVORITE  /////////////////////////////
+  /**
+   * Adds a movie to the user's favorites.
+   * @param movieID - The ID of the movie to add.
+   */
   addFavorite(movieID: string): void {
     this.fetchApiData.addFavoriteMovie(movieID).subscribe({
       next: (response) => {
@@ -140,6 +211,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   // DELETE-FAVORITE /////////////////////////////
+  /**
+   * Removes a movie from the user's favorites.
+   * @param movieID - The ID of the movie to remove.
+   */
   deleteFavorite(movieID: string): void {
     this.fetchApiData.deleteFavoriteMovie(movieID).subscribe({
       next: (response) => {
@@ -171,9 +246,13 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // DELETE USER *******************************************************
+  // USER ACCOUNT MANAGEMENT *******************************************************
 
   // DELETE-USER-PROFILE /////////////////////////////
+  /**
+   * Deletes the user's profile after confirmation.
+   * Prompts for confirmation before calling API to delete profile.
+   */
   deleteUserProfile(): void {
     const userToDelete = this.user.Username;
     if (
@@ -208,9 +287,11 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  // UPDATE USER *******************************************************
-
-  // UPDATE-USER-PROFILE
+  // UPDATE-USER-PROFILE  /////////////////////////////
+  /**
+   * Updates the user's profile with provided details.
+   * Requires all fields (`Username`, `Password`, `Email`) to be filled before submission.
+   */
   updateUserProfile(): void {
     if (
       !this.userData.Username ||

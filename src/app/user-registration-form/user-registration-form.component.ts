@@ -13,6 +13,12 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 // COMPONENT-CONFIGURATION
 // ----------------------------------------------------------------------------------------------------------
+/**
+ * Component that displays a registration form for new users.
+ *
+ * Allows users to enter registration details, which are then sent to the backend for account creation.
+ * @returns The component renders a registration form for user signup.
+ */
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
@@ -22,33 +28,44 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // COMPONENT
 // ----------------------------------------------------------------------------------------------------------
 export class UserRegistrationFormComponent implements OnInit {
-  // OnInt: The OnInit-Interface is implemented in the component to manage its initialization logic.
-
   /**
-   * @-INPUT-DECORATOR /////////////////////////////
-   * allows the parent component to pass data (userData) to the child component.
+   * `@Input` decorator allows the parent component to pass user data to this component for registration purposes.
+   * This object contains initial form fields for user input.
    */
   @Input() userData = { Username: '', Password: '', Email: '', Birthdate: '' };
 
-  //  CONSTRUCTOR /////////////////////////////  (The constructor injects dependencies)
+  //  CONSTRUCTOR /////////////////////////////
+  /**
+   * Creates an instance of the UserRegistrationFormComponent and injects dependencies.
+   * @param fetchApiData - The service to handle API requests, including user registration.
+   * @param dialogRef - Reference to the opened dialog containing this component. Used to close the dialog on successful registration.
+   * @param snackBar - Service used to display a brief message when registration is successful or fails.
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
     public snackBar: MatSnackBar
   ) {}
 
-  //  NG-ON-INIT  ///////////////////////////// (is implemented in the component to manage its initialization logic.)
+  //  NG-ON-INIT  /////////////////////////////
   ngOnInit(): void {}
-  // Lifecycle-Hook = special methods that Angular calls at certain points in the life cycle of a component or directive.
-  // is called once after the component's input has been initialized (via the @Input decorator).
 
   // REGISTER USER  /////////////////////////////
+  /**
+   * Sends the user’s registration data to the API to create a new account.
+   * This method calls the `userRegistration` method of the `FetchApiDataService` and passes `userData`.
+   * @returns void
+   */
   registerUser(): void {
     // calls the userRegistration method of the fetchApiData service and passes the userData object.
     this.fetchApiData.userRegistration(this.userData).subscribe({
       // Success Callback
+      /**
+       * Success callback function for handling the API response.
+       * @param result - The response data returned from the API if registration is successful.
+       */
       next: (result) => {
-        this.dialogRef.close(); // This will close the modal on success!
+        this.dialogRef.close(); // Closes the dialog on successful registration
         console.log(result);
         this.snackBar.open('You have successfully registered.', 'OK', {
           duration: 3000,

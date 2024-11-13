@@ -17,18 +17,21 @@ import {
 } from '@angular/common/http';
 
 // BASE-SETTINGS
-// **************************************************************************************
+// -------------------------------------------------------------------------------------------
 
-// DECLARING-API-URL  /////////////////////////////  (for providing data for the client app)
+// BASE-API-URL /////////////////////////////
+/**
+ * Declaring Base URL for the API that provides data for the client app.
+ */
 const apiUrl = 'https://kraftflix-api-d019e99d109c.herokuapp.com/';
 
 /**
- * INJECTABLE-DECORATOR
- * ----------------------------------------------------------------------------------------------------------
- * marks this class as a service
- * allows the service to be available throughout the app (without declaring it in a module)
+ * FetchApiDataService
+ * Service for fetching data from the API.
+ * Handles CRUD operations for user data, movies, genres, and directors, and error handling.
  */
 @Injectable({
+  // the INJECTABLE-DECORATOR marks this class as a service & allows the service to be available throughout the app (without declaring it in a module)
   providedIn: 'root',
 })
 
@@ -36,24 +39,42 @@ const apiUrl = 'https://kraftflix-api-d019e99d109c.herokuapp.com/';
 // ----------------------------------------------------------------------------------------------------------
 export class FetchApiDataService {
   //
-  //  CONSTRUCTOR /////////////////////////////  (The constructor injects dependencies)
+  //  CONSTRUCTOR /////////////////////////////
+  /**
+   * Constructor that injects the HttpClient dependency to enable HTTP requests.
+   *
+   * Making it available via this.http
+   * @param {HttpClient} http - Angular's HttpClient used to make HTTP requests.
+   */
   constructor(private http: HttpClient) {}
-  // Inject the HttpClient module into entire class (to the constructor params)
-  // Allows sending HTTP requests
-  // making it available via this.http
 
-  // EXTRACT-RESPONSE-DATA (NON-TYPED RESPONSE-EXTRACTION)
+  // EXTRACT-RESPONSE-DATA (NON-TYPED RESPONSE-EXTRACTION) /////////////////////////////
+  /**
+   * Extracts response data from an HTTP response.
+   * @param {any} res - The response object from the HTTP request.
+   * @returns {any} - The extracted data or an empty object if no data is present.
+   */
   private extractResponseData(res: any): any {
     const body = res;
     return body || {};
   }
 
-  // GET-TOKEN
+  // GET-TOKEN  /////////////////////////////
+  /**
+   * Retrieves the authentication token from local storage.
+   *
+   * @returns {string | null} - The token as a string if it exists, or null if not.
+   */
   private getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  // GET-HEADERS
+  // GET-HEADERS  /////////////////////////////
+  /**
+   * Generates HTTP headers with the authorization token for requests requiring authentication.
+   *
+   * @returns {HttpHeaders} - A new set of HTTP headers with the authorization token included.
+   */
   private getHeaders(): HttpHeaders {
     const token = this.getToken();
     return new HttpHeaders({
@@ -61,9 +82,18 @@ export class FetchApiDataService {
     });
   }
 
-  // USERS-ENDPOINT-OPERATIONS  *******************************************************
+  // METHODS
+  // ----------------------------------------------------------------------------------------------------------
+
+  // USERS-ENDPOINT-OPERATIONS  *******************************************************************
 
   // CREATE-USER  (USER-REGISTRATION)  /////////////////////////////
+  /**
+   * Registers a new user by sending user details to the API.
+   *
+   * @param {any} userDetails - An object containing user details such as username, password, email, and birthday.
+   * @returns {Observable<any>} - An observable containing the API response upon registration.
+   */
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return (
@@ -76,6 +106,12 @@ export class FetchApiDataService {
   }
 
   // LOGIN-USER  /////////////////////////////
+  /**
+   * Logs in a user by sending their credentials to the API.
+   *
+   * @param {any} userDetails - An object containing the user's login credentials.
+   * @returns {Observable<any>} - An observable containing the API response upon login.
+   */
   public userLogin(userDetails: any): Observable<any> {
     return this.http
       .post(`${apiUrl}login`, userDetails)
@@ -83,6 +119,12 @@ export class FetchApiDataService {
   }
 
   // EDIT-USER  /////////////////////////////
+  /**
+   * Updates the details of an existing user.
+   *
+   * @param {any} userDetails - An object containing the updated user details.
+   * @returns {Observable<any>} - An observable containing the API response upon updating the user.
+   */
   public editUser(userDetails: any): Observable<any> {
     return this.http
       .put(`${apiUrl}users/${userDetails.Username}`, userDetails, {
@@ -92,6 +134,12 @@ export class FetchApiDataService {
   }
 
   // DELETE-USER  /////////////////////////////
+  /**
+   * Deletes a user by username from the database.
+   *
+   * @param {string} userName - The username of the user to delete.
+   * @returns {Observable<any>} - An observable with the server's response upon deletion.
+   */
   public deleteUser(userName: string): Observable<any> {
     return this.http
       .delete(`${apiUrl}users/${userName}`, {
@@ -102,6 +150,11 @@ export class FetchApiDataService {
   }
 
   // GET-SINGLE-USER  /////////////////////////////
+  /**
+   * Retrieves a single user's information.
+   *
+   * @returns {Observable<any>} - An observable with the user data fetched from the API.
+   */
   public getSingleUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
@@ -111,9 +164,15 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // FAVORITE-MOVIE-OPERATIONS ( ADD-&-DELETE )  *******************************************************
+  // FAVORITE-MOVIE-OPERATIONS ( ADD-&-DELETE )  ***************************************************
 
   // ADD-FAVORITE-MOVIE  /////////////////////////////
+  /**
+   * Adds a movie to a user's list of favorites.
+   *
+   * @param {string} moviesID - The ID of the movie to add to favorites.
+   * @returns {Observable<any>} - An observable with the server's response upon adding the favorite.
+   */
   public addFavoriteMovie(moviesID: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     console.log(user);
@@ -138,6 +197,12 @@ export class FetchApiDataService {
   }
 
   // DELETE-FAVORITE-MOVIE  /////////////////////////////
+  /**
+   * Deletes a movie from a user's list of favorites.
+   *
+   * @param {string} moviesID - The ID of the movie to remove from favorites.
+   * @returns {Observable<any>} - An observable with the server's response upon removing the favorite.
+   */
   public deleteFavoriteMovie(moviesID: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
@@ -148,9 +213,14 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // MOVIES-ENDPOINT-OPERATIONS  *******************************************************
+  // MOVIES-ENDPOINT-OPERATIONS  ******************************************************************
 
   // GET-ALL-MOVIES  /////////////////////////////
+  /**
+   * Retrieves the complete list of movies from the API.
+   *
+   * @returns {Observable<any>} - An observable containing an array of movies.
+   */
   public getAllMovies(): Observable<any> {
     return this.http
       .get(`${apiUrl}movies`, {
@@ -160,6 +230,12 @@ export class FetchApiDataService {
   }
 
   // GET-SINGLE-MOVIE  /////////////////////////////
+  /**
+   * Retrieves details of a single movie by title.
+   *
+   * @param {string} title - The title of the movie to fetch.
+   * @returns {Observable<any>} - An observable containing movie details.
+   */
   public getSingleMovie(title: string): Observable<any> {
     return this.http
       .get(`${apiUrl}movies/${title}`, {
@@ -169,6 +245,12 @@ export class FetchApiDataService {
   }
 
   // GET-DIRECTOR  /////////////////////////////
+  /**
+   * Retrieves details of a director by name.
+   *
+   * @param {string} directorName - The name of the director.
+   * @returns {Observable<any>} - An observable containing the director's details.
+   */
   public getDirector(directorName: string): Observable<any> {
     return this.http
       .get(`${apiUrl}movies/directors/${directorName}`, {
@@ -178,6 +260,12 @@ export class FetchApiDataService {
   }
 
   // GET-GENRE  /////////////////////////////
+  /**
+   * Retrieves details of a genre by name.
+   *
+   * @param {string} genreName - The name of the genre.
+   * @returns {Observable<any>} - An observable containing the genre's details.
+   */
   public getGenre(genreName: string): Observable<any> {
     return this.http
       .get(`${apiUrl}movies/genres/${genreName}`, {
@@ -189,6 +277,12 @@ export class FetchApiDataService {
   // ERROR-HANDLING  *******************************************************
 
   // HANDLE-ERROR  /////////////////////////////
+  /**
+   * Handles HTTP errors that occur during API requests.
+   *
+   * @param {HttpErrorResponse} error - The error object representing the HTTP error.
+   * @returns {Observable<never>} - An observable that throws an error with a message.
+   */
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

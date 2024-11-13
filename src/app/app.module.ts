@@ -8,23 +8,24 @@ import { BrowserModule } from '@angular/platform-browser'; //  required to run A
 import { HttpClient, HttpClientModule } from '@angular/common/http'; // enables the HttpClientservice used for HTTP requests
 // ROUTING  /////////////////////////////
 import { AppRoutingModule } from './app-routing.module';
-// Animationen?  /////////////////////////////
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+// ANIMATIONS  /////////////////////////////
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Provides animations asynchronously
 // ANGULAR MATERIAL  /////////////////////////////
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTableModule } from '@angular/material/table';
-// ROUTING  /////////////////////////////
-import { RouterModule, Routes } from '@angular/router';
+import { MatInputModule } from '@angular/material/input'; // Provides input form field functionality
+import { MatButtonModule } from '@angular/material/button'; // Provides button components
+import { MatCardModule } from '@angular/material/card'; // Provides card layout components
+import { MatFormFieldModule } from '@angular/material/form-field'; // Provides form field elements
+import { MatDialogModule } from '@angular/material/dialog'; // Provides dialog component for modal overlays
+import { MatSnackBarModule } from '@angular/material/snack-bar'; // Provides snack-bar notifications
+import { MatIconModule } from '@angular/material/icon'; // Provides icon components
+import { MatToolbarModule } from '@angular/material/toolbar'; // Provides toolbar components
+import { MatTableModule } from '@angular/material/table'; // Provides table display components
+import { FormsModule } from '@angular/forms'; // Provides forms functionality
+
+// ROUTER MODULES  /////////////////////////////
+import { RouterModule, Routes } from '@angular/router'; // Enables Angular routing with specified paths
 // APP COMPONENTS  /////////////////////////////
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component'; // The root component of the application
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
@@ -36,8 +37,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUpdateFormComponent } from './user-update-form/user-update-form.component';
 
-// ROUTING
+// ROUTING CONFIGURATION
 // ----------------------------------------------------------------------------------------------------------
+/**
+ * Array defining the application's routes and the components associated with each route.
+ *
+ * - The default route redirects to 'welcome'.
+ * - 'welcome' route loads the `WelcomePageComponent`.
+ * - 'movies' route loads the `MovieCardComponent`.
+ * - 'profile' route loads the `UserProfileComponent`.
+ */
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
@@ -47,14 +56,18 @@ const appRoutes: Routes = [
 
 // @-NG-MODULE
 // ----------------------------------------------------------------------------------------------------------
-/** defines a module in Angular that groups and configures a set of
- * related components,
- * directives,
- * pipes,
- * services.
+/**
+ * Root Angular module that organizes and bootstraps the application.
+ *
+ * - Declares the components and modules used in the application.
+ * - Imports necessary Angular and third-party modules.
+ * - Configures routing, providers, and the root component.
  */
 @NgModule({
   // DECLARATIONS  /////////////////////////////
+  /**
+   * Declares all components used within this module.
+   */
   declarations: [
     AppComponent,
     UserRegistrationFormComponent,
@@ -68,7 +81,11 @@ const appRoutes: Routes = [
     UserProfileComponent,
     UserUpdateFormComponent,
   ],
+
   // IMPORTS  /////////////////////////////
+  /**
+   * Imports essential Angular modules and custom modules for the application.
+   */
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
@@ -85,9 +102,18 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTableModule,
   ],
-  // PROVIDERS  /////////////////////////////  (Definition of the required global services or providers)
+
+  // PROVIDERS  /////////////////////////////
+  /**
+   * Specifies required services and providers available globally.
+   * Adds asynchronous animations.
+   */
   providers: [provideAnimationsAsync()],
-  // BOOTSTRAP  ///////////////////////////// (Defines the root component that is loaded at application startup.)
+
+  // BOOTSTRAP  /////////////////////////////
+  /**
+   * Specifies the root component to bootstrap(load) at application startup.
+   */
   bootstrap: [AppComponent],
 })
 export class AppModule {}

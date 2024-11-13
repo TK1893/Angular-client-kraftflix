@@ -1,0 +1,13 @@
+{
+    "entryPoints": ["src/app"],        // Das Verzeichnis, in dem deine TypeScript-Dateien liegen
+    "out": "docs",                     // Der Zielordner für die Dokumentation
+    "exclude": ["**/*.spec.ts", "**/node_modules/**"],      // Ausschließen von Dateien
+    "name": "Kraftflix Angular Documentation",       // Name der Dokumentation
+    "includeVersion": true,             // Fügt die Version der Dokumentation hinzu
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "theme": "default",
+    "readme": "README.md"
+  }
+  
