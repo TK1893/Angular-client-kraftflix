@@ -116,7 +116,6 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
 #### **TypeDoc**
 
 - For generating inline code documentation.
-
 - For environment setup and dependency management.
 
 ---
