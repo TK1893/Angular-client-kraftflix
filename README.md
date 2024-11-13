@@ -159,18 +159,19 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
 
 1. **Welcome View**:
 
-   - Users can register or log in to access the main movie library.
+- Users can register or log in to access the main movie library.
 
 2. **Browse Movies**:
 
-   - After logging in, users can explore a list of available movies and view details for each one.
+- After logging in, users can explore a list of available movies and view details for each one.
 
 3. **Movie Details**:
 
-   - On the single movie cards, users can click buttons to learn more about the movie’s plot, director and genre.
+- On the single movie cards, users can click buttons to learn more about the movie’s plot, director and genre.
 
 4. **User Profile**:
-   - Users can view and edit their profile information and manage a list of favorite movies.
+
+- Users can view and edit their profile information and manage a list of favorite movies.
 
 ---
 
