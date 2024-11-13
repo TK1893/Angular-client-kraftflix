@@ -19,7 +19,8 @@ This project covers the development of the front end using Angular, alongside cr
 - [Technologies Used](#technologies-used)
 - [Installation and Setup](#installation-and-setup)
 - [Usage](#usage)
-- [App Structure](#app-structure)
+- [Folder Structure](#folder-structure)
+- [App Components](#app-components)
 - [Documentation and Commenting](#documentation-and-commenting)
 - [Kanban Board and Agile Methods](#kanban-board-and-agile-methods)
 - [Contributing](#contributing)
@@ -67,38 +68,56 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
 
 ## Technologies Used
 
-### 1. **Angular (Version 18.2.9)**
+### `Core Technologies`
 
-- The front end of this application is built with Angular, a popular framework for building web applications.
+#### 1. **Angular (Version 18.2.9)**
 
-### 2. **Angular Material**
+- The frontend framework for building the SPA.
 
-- Used to create a responsive and attractive UI, Angular Material provides pre-built UI components that enhance the user experience.
+#### 2. **Angular Material**
 
-### 3. **Node.js and npm**
+- Used to create a responsive and attractive UI. Angular Material provides pre-built UI components that enhance the user experience.
 
-- **Node.js** is used to run and build the project locally.
-- **npm** is used to install project dependencies.
+#### 3. **TypeScript**
 
-### 4. **RESTful API**
+- Used as the primary language for Angular development.
 
-- The app connects to an existing RESTful API to fetch data on movies, directors, genres, and user profiles.
+#### 4. **RxJS**
 
-### 5. **TypeScript**
+- For managing asynchronous data streams and handling errors in API calls.
 
-- The application is written in TypeScript for improved type-checking and code management.
+#### 5. **Angular Router**
 
-### 6. **GitHub Pages**
+- used for in-app navigation with URL paths between the different Views
 
-- The application is hosted on **GitHub Pages**, making it publicly accessible.
+### `Development Tools`
 
-### 7. **TypeDoc and JSDoc**
+#### 1. **Node.js and npm**
 
-- **TypeDoc** is used for inline documentation in the code.
+- For environment setup and dependency management.
 
-### 8. **Agile Project Management**
+#### 4. **Angular CLI**
 
-- A Trello **Kanban Board** was used to organize tasks with user stories and track progress using story points.
+- Facilitates project setup and management.
+
+#### 5. **GitHub Pages**
+
+- For App hosting.
+
+### `Project Management Tool`
+
+#### 1. **Trello**
+
+- for Agile project management
+- Kanban Board used to organize tasks with user stories and track progress using story points.
+
+### `Documentation and Commenting`
+
+#### 1. **TypeDoc**
+
+- For generating inline code documentation.
+
+- For environment setup and dependency management.
 
 ---
 
@@ -156,7 +175,7 @@ The app interacts with an existing server-side RESTful API to retrieve data and 
 
 ---
 
-## App Structure
+## Folder Structure
 
 ```plaintext
 Kraftflix-angular-app/
@@ -177,9 +196,28 @@ Kraftflix-angular-app/
 
 ```
 
+---
+
+## App Components
+
+- **`AppComponent`** - Root component of the app.
+
+- **`WelcomePageComponent`** - App welcome page.
+- **`UserRegistrationFormComponent`** - User registration form.
+- **`UserLoginFormComponent`** - User login form.
+- **`MovieCardComponent`** - Displays movie info cards.
+- **`InfoDirectorComponent`** - Shows director info.
+- **`InfoGenreComponent`** - Shows genre info.
+- **`InfoMovieComponent`** - Shows movie plot.
+- **`NavbarComponent`** - Navigation bar.
+- **`UserProfileComponent`** - User profile page.
+- **`UserUpdateFormComponent`** - User info update form.
+
+---
+
 ## Documentation and Commenting
 
-The project includes **`TypeDoc`** for code documentation. All documentation files are available in the **`docs`** folder
+The project includes **`TypeDoc`** for code documentation. All documentation files are available in the [**docs**](https://github.com/TK1893/Angular-client-kraftflix/tree/main/docs) folder
 
 ---
 
@@ -189,9 +227,9 @@ For project management, a **Kanban Board** was used in **Trello**.
 Tasks were organized as **User Stories** and estimated with **Story Points**.  
 Tasks were categorized as follows:
 
-- **`To Do`** : Tasks pending completion.
-- **`In Progress`** : Tasks currently being worked on.
-- **`Done `** : Completed tasks.
+- **`To Do`** - Tasks pending completion.
+- **`In Progress`** - Tasks currently being worked on.
+- **`Done `** - Completed tasks.
 
 ---
 
@@ -214,7 +252,3 @@ This project is open-source under the MIT License.
 ## Author
 
 Developed by Tobias Kraft.
-
-```
-
-```
