@@ -25,6 +25,7 @@ This project covers the development of the front end using Angular, alongside cr
 - [Kanban Board and Agile Methods](#kanban-board-and-agile-methods)
 - [Contributing](#contributing)
 - [License](#license)
+- [Author](#author)
 
 ---
 
@@ -251,4 +252,4 @@ This project is open-source under the MIT License.
 
 ## Author
 
-Developed by Tobias Kraft.
+Developed by [Tobias Kraft](https://tk1893.github.io/tk-portfolio/).
